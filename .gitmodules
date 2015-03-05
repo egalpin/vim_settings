@@ -33,4 +33,4 @@
 	url = https://github.com/vim-scripts/PreserveNoEOL.git
 [submodule "fonts"]
 	path = fonts
-	url = https://github.com/Lokaltog/powerline-fonts.git
+	url = https://github.com/powerline/fonts
