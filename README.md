@@ -15,7 +15,7 @@ If simply cloning:
   - Navigate to the cloned location
   - run ```./vimSetup.sh```
     - Note that on most systems, the script may need to be run with sudo in order to allow for compilation of dependencies (ctags)
-  - Install fonts from the home directory ```fonts``` folder
+  - Install fonts from your user's home directory i.e.```~/fonts``` folder
 
 -----------------------------------------------------
 
