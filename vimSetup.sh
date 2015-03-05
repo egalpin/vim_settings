@@ -12,27 +12,22 @@ fi
 
 win_chk=$( env | grep -i 'windows' )
 if [ "$(pwd)" != "$HOME" ]; then
+    echo "${info}Saving ~/.vim, ~/.vimrc, and ~/fonts to .bkp${end_str}"
     # Save any existing vim configs
     [ -d ~/.vim ] && mv ~/.vim ~/.vim.bkp
     [ -f ~/.vimrc ] && mv ~/.vimrc ~/.vimrc.bkp
     [ -d ~/fonts ] && mv ~/fonts ~/fonts.bkp
 fi
 
-echo "${info}Obtaining git submodules for additional Vim plugins${end_str}"
-git submodule update --init --recursive
-if [ $? -eq 0 ]; then
-    echo "${info}Submodules obtained successfully${end_str}"
-    if [ "$(pwd)" != "$HOME" ]; then
-        # Copy new Vim configs
-        cp -rf .vim ~/.vim
-        cp -f .vimrc ~/.vimrc
-        cp -rf fonts ~/fonts
-    fi
-else
-    echo "${warn}Failed to obtain git submodules${end_str}"
-    exit 3
+if [ "$(pwd)" != "$HOME" ]; then
+    echo "${info}Copying .vim, .vimrc, and fonts to ~${end_str}"
+    # Copy new Vim configs
+    cp -rf .vim ~/.vim
+    cp -f .vimrc ~/.vimrc
+    cp -rf fonts ~/fonts
 fi
-echo "${info}Configuring and installing ~/.vim/ctags-5.8 for Tagbar${end_str}"
+
+echo "${info}Configuring and installing ~/.vim/ctags-5.8 for Tagbar (requires root privileges)${end_str}"
 cd ~/.vim/ctags_src
 tar xzf ctags-5.8.tar.gz
 cd ctags-5.8
