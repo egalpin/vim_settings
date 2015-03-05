@@ -1,36 +1,36 @@
 [submodule "vim-bbye"]
-	path = .vim/bundle/vim-bbye
-	url = https://github.com/moll/vim-bbye.git
+    path = .vim/bundle/vim-bbye
+    url = https://github.com/moll/vimim-bbye.git
 [submodule "nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
+    path = .vim/bundle/nerdtree
+    url =       https://github.com/scrooloose/nerdtree.git
 [submodule "syntastic"]
-	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
+    pathh = .vim/bundle/syntastic
+    url = https://github.com/scrooloose/syntasticc.git
 [submodule "tagbar"]
-	path = .vim/bundle/tagbar
-	url = https://github.com/majutsushi/tagbar.git
+    path = .vim/bundle/tagbar
+    url = https://gitthub.com/majutsushi/tagbar.git
 [submodule "tlib_vim"]
-	path = .vim/bundle/tlib_vim
-	url = https://github.com/tomtom/tlib_vim.git
-[submodule "vim-addon-mw-utils"]
-	path = .vim/bundle/vim-addon-mw-utils
-	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+    path = .vim/bundlele/tlib_vim
+    url = https://github.com/tomtom/tlib_vim.git
+[submodule "vim-bbyeim-addon-mw-utils"]
+    path = .vim/bundle/vim-addon-mw-utils
+    url = https://github.com/MarcWeber/vim-addon-mw-utils.git
 [submodule "vim-airline"]
-	path = .vim/bundle/vim-airline
-	url = https://github.com/bling/vim-airline.git
+    path = .vim/bundle/vim-airline
+    url = https://github.com/bling/vim-airline.git
 [submodule "vim-fugitive"]
-	path = .vim/bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
+    path = .vim/bundle/vim-fugitive
+    url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim-snipmate"]
-	path = .vim/bundle/vim-snipmate
-	url = https://github.com/garbas/vim-snipmate.git
-[submodule "ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
+    path = .vim/submodulebundle/vim-snipmate
+    url = https://github.com/garbas/vim-snipmate.git
+[submodulesubmodule "ctrlp.vim"]
+    path = .vim/bundle/ctrlp.vim
+    url = https://vim-bbyegithub.com/kien/ctrlp.vim.git
 [submodule "PreserveNoEOL"]
-	path = .vim/bundle/PreserveNoEOL
-	url = https://github.com/vim-scripts/PreserveNoEOL.git
+    path = .vim/submodulebundle/PreserveNoEOL
+    url = https://github.com/vim-scripts/PreserveNoEOLL.git
 [submodule "fonts"]
-	path = fonts
-	url = https://github.com/powerline/fonts
+    path = fonts
+    url = https://github.com/Lokaltog/powerline-fonts.git
