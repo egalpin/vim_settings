@@ -11,14 +11,15 @@ Tested working on:
 
 -----------------------------------------------------
 If simply cloning:
-  - Clone the repo using ```git clone --depth=1 https://github.com/egalpin/vim_setup_settings.git```
+  - Clone the repo using ```git clone https://github.com/egalpin/vim_settings.git```
   - Navigate to the cloned location
   - run ```./vimSetup.sh```
     - Note that on most systems, the script may need to be run with sudo in order to allow for compilation of dependencies (ctags)
+  - Install fonts from the home directory ```fonts``` folder
 
 -----------------------------------------------------
 
-Summary of Vim commands:
+Quick Summary of Vim commands:
 ===============================
   - Note that leader has been mapped to ;
   - Note that the arrow keys have been deactivated.  Only j/k/l/h will move the cursor.
