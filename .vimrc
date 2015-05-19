@@ -5,7 +5,7 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 
-colors 256-grayvim
+colors pyte
 
 let mapleader=";"
 
@@ -29,6 +29,7 @@ set laststatus=2
 set encoding=utf-8
 set cursorline
 set nowrap
+set nocul
 
 " Commands
 command! QuitTab call s:QuitTab()
@@ -63,7 +64,8 @@ endfunc
 nnoremap j gj
 nnoremap k gk
 nnoremap <silent> <leader>e :NERDTreeToggle<cr>
-nnoremap <leader>q :nohlsearch<cr>
+nnoremap <leader>h :nohlsearch<cr>
+nnoremap <leader>c :botright cwindow<cr>
 nnoremap <silent> <leader>t :TagbarToggle<cr>
 nnoremap <leader>j :TagbarOpen<space>j<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
@@ -86,7 +88,7 @@ nnoremap <leader>wc :w<cr>:tabclose<cr>
 nnoremap <leader>qc :tabclose!<cr>
 nnoremap QQ :QuitTab<cr>
 nnoremap WQ :WriteQuitTab<cr>
-nnoremap <leader>c :set colorcolumn=<cr>
+"nnoremap <leader>c :set colorcolumn=<cr>
 nnoremap <C-p> :CtrlP<cr>
 nnoremap gb :bn<cr>
 nnoremap GB :bp<cr>
@@ -136,9 +138,9 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#show_function_definition = 0
 
 " Enable the list of buffers
- let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
- let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#fnamemod = ':t'
 " Enable powerline fonts for better look
 let g:airline_powerline_fonts = 1 
 
@@ -147,24 +149,30 @@ let g:JSHintHighlightErrorLine = 0
 " Check for JS errors only on write
 let g:JSHintUpdateWriteOnly = 1
 
+" Enable git-gutter to always be present, even with no changesilet
+"let g:gitgutter_sign_column_always = 1
+let g:gitgutter_eager = 1
+let g:gitgutter_realtime= 1
+
 " Match lines of 80 characters in length
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 autocmd BufRead,VimEnter,WinEnter *.py nested match OverLength /\%80v.\+/
 
 " Disable cursorline when entering insert mode
-autocmd InsertEnter * set nocul
+"autocmd InsertEnter * set nocul
 " Enable cursorline when leaving insert mode
-autocmd InsertLeave * set cul
+"autocmd InsertLeave * set cul
 
 " Startup
 execute pathogen#infect()
-autocmd BufRead,VimEnter,WinEnter * :syntax on
 highlight ColorColumn ctermbg=8
+highlight SignColumn ctermbg=DarkGrey
 autocmd BufRead,VimEnter,WinEnter * nested :set colorcolumn=
 " Create visual reminder for PEP8 standards in .py files
 autocmd BufRead,VimEnter,WinEnter *.py nested :set colorcolumn=80
 " Disable cursorline in tagbar tab (for improved scrolling)
 autocmd FileType tagbar setlocal nocursorline
 " Open quickfix when saving JS file
-autocmd BufWritePre *.js :botright cwindow
+"autocmd BufWritePre *.js :botright cwindow
 filetype plugin on
+
