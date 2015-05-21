@@ -1,4 +1,5 @@
 #/bin/sh
+#TODO automate phpctags, YouCompleteMe
 which tput >/dev/null 2>&1
 if [ $? -eq 0 ]; then
     info=$( tput setaf 3 )
