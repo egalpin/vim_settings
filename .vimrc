@@ -1,4 +1,3 @@
-syntax on
 let g:Powerline_symbols = 'fancy'
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
@@ -30,6 +29,7 @@ set encoding=utf-8
 set cursorline
 set nowrap
 set nocul
+set pastetoggle=<F2>
 
 " Commands
 command! QuitTab call s:QuitTab()
@@ -63,7 +63,7 @@ endfunc
 " Normal ------------------------------------------------
 nnoremap j gj
 nnoremap k gk
-nnoremap <silent> <leader>e :NERDTreeToggle<cr>
+nnoremap <silent> <leader>E :NERDTreeToggle<cr>
 nnoremap <leader>h :nohlsearch<cr>
 nnoremap <leader>c :botright cwindow<cr>
 nnoremap <silent> <leader>t :TagbarToggle<cr>
@@ -79,21 +79,23 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
-nnoremap <c-w> :set wrap!<cr>
-nnoremap <leader>r :set relativenumber!<cr>
 nnoremap <leader>n :set number!<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>:nohlsearch<cr>
-nnoremap <leader>git :bufdo e!<cr>
+nnoremap <leader>r :bufdo e!<cr>
 nnoremap <leader>wc :w<cr>:tabclose<cr>
 nnoremap <leader>qc :tabclose!<cr>
-nnoremap QQ :QuitTab<cr>
+nnoremap QQ :QuitTab<cr>:bd DebuggerWatch<cr>:bd DebuggerStack<cr>:bd DebuggerStatus<cr>
 nnoremap WQ :WriteQuitTab<cr>
+nnoremap <leader>/ :TagbarClose<CR>:NERDTreeClose<CR>:VdebugStart<CR>
+nnoremap <leader>? :TagbarOpen<CR>:NERDTree<CR><C-l>
 "nnoremap <leader>c :set colorcolumn=<cr>
 nnoremap <C-p> :CtrlP<cr>
 nnoremap gb :bn<cr>
 nnoremap GB :bp<cr>
+nnoremap <leader>q :q<CR>
 nnoremap <leader>bd :Bdelete<cr>
 nnoremap <silent> <leader>cc :call ToggleQuickfixList()<CR>
+"nnoremap K :grep! -nR '\b<C-R><C-W>\b'<CR>:cw<CR>
 
 " Insert ------------------------------------------------
 inoremap jk <esc>
@@ -118,6 +120,7 @@ iabbrev ehco echo
 vnoremap <c-h> :s/
  " Join lines with character
 vnoremap <c-j> <esc>:JoinLines 
+"vnoremap <leader>g :<c-u>!grep -rl '<,'> ./*<cr>
 "vnoremap <silent> <c-j> :-1s/$/,/<cr>:%j<cr>
 
 filetype plugin indent on
@@ -149,7 +152,8 @@ let g:JSHintHighlightErrorLine = 0
 " Check for JS errors only on write
 let g:JSHintUpdateWriteOnly = 1
 
-" Enable git-gutter to always be present, even with no changesilet
+" Git Gutter
+" Enable git-gutter to always be present, even with no changes
 "let g:gitgutter_sign_column_always = 1
 let g:gitgutter_eager = 1
 let g:gitgutter_realtime= 1
@@ -163,8 +167,43 @@ autocmd BufRead,VimEnter,WinEnter *.py nested match OverLength /\%80v.\+/
 " Enable cursorline when leaving insert mode
 "autocmd InsertLeave * set cul
 
+" Vdebug
+ let g:vdebug_keymap = {
+ \    "run" : "<F5>",
+ \    "run_to_cursor" : "<Down>",
+ \    "step_over" : "<Right>",
+ \    "step_into" : "<Left>",
+ \    "step_out" : "<Up>",
+ \    "close" : "q",
+ \    "set_breakpoint" : "<Leader>p",
+ \    "eval_visual" : "<Leader>e"
+ \}
+ let g:vdebug_options = {
+ \    'ide_key' : 'PHPSTORM',
+ \    'break_on_open' : 1,
+ \    'path_maps': {'/home/vagrant/nitrogensports.eu/httpdocs': '/Users/egalpin/gbl/ns/httpdocs'},
+ \    'watch_window_style': 'expanded',
+ \    'port' : 9000,
+ \}
+
+" phpctags
+let g:tagbar_phpctags_bin="/usr/local/bin/phpctags/bin/phpctags"
+
+" The Silver Searcher
+if executable('ag')
+    " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+    " ag is fast enough that CtrlP doesn't need to cache (but why not?)
+    let g:ctrlp_use_caching = 1
+endif
+
 " Startup
 execute pathogen#infect()
+call pathogen#helptags()
 highlight ColorColumn ctermbg=8
 highlight SignColumn ctermbg=DarkGrey
 autocmd BufRead,VimEnter,WinEnter * nested :set colorcolumn=
@@ -175,4 +214,4 @@ autocmd FileType tagbar setlocal nocursorline
 " Open quickfix when saving JS file
 "autocmd BufWritePre *.js :botright cwindow
 filetype plugin on
-
+syntax on
