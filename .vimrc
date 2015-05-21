@@ -129,6 +129,9 @@ filetype on
 "let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 "let g:tagbar_width=55
 let g:tagbar_autofocus=0
+let g:tagbar_type_javascript = {
+    \ 'ctagsbin' : '/usr/local/bin/jsctags'
+\}
 
 let g:PreserveNoEOL = 1
 
@@ -197,8 +200,8 @@ if executable('ag')
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-    " ag is fast enough that CtrlP doesn't need to cache (but why not?)
-    let g:ctrlp_use_caching = 1
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
 endif
 
 " Startup
