@@ -77,7 +77,7 @@ installYCM ()
 
 installJsctags ()
 {
-    echo -e "${CYAN}Configuring and installing YouCompleteMe${NC}"
+    echo -e "${CYAN}Configuring and installing JSctags${NC}"
     sudo npm install -g git+https://github.com/ramitos/jsctags.git
     reportStatus
 }
@@ -122,7 +122,7 @@ installNode ()
         reportStatus
     elif [[ "$OS_CHK" = true ]] && [[ "$OS_NAME" == "Linux" ]]; then
         # handle Linux  node and npm install
-        sudo apt-get -y install cmake nodejs npm
+        sudo apt-get -y install python-dev php5 cmake nodejs npm
         reportStatus
     else
         echo -e "${RED}Your OS does not support node${NC}"
@@ -158,7 +158,5 @@ installPhpctags
 installTernForVim
 installVimProc
 
-echo -e "${CYAN}Next steps: set the terminal font to a powerline font; check YouCompleteMe, jsctags, phpctags on GitHub to verify installation${NC}"
 echo -e "${GREEN}Done!${NC}"
-
 exit 0
