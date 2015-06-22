@@ -178,4 +178,5 @@ installTernForVim
 installVimProc
 
 echo -e "${GREEN}Done!${NC}"
+echo -e "${CYAN}All finished. Be sure to set the terminal font to a Powerline compatible font.${NC}"
 exit 0
