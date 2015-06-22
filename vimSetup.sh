@@ -114,20 +114,29 @@ installVimProc ()
 
 installNode ()
 {
-    echo -e "${CYAN}Configuring and installing Node and NPM${NC}"
-    if [[ "$OS_CHK" = true ]] && [[ "$OS_NAME" == "Darwin" ]]; then
-        # handle Mac brew, node, and npm install
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        brew install node
-        reportStatus
-    elif [[ "$OS_CHK" = true ]] && [[ "$OS_NAME" == "Linux" ]]; then
-        # handle Linux  node and npm install
-        sudo apt-get -y install python-dev php5 cmake nodejs npm
-        reportStatus
+    if [ ! -z "$(which node)" ] -a [ !-z "$(which npm)" ]; then
+        echo -e "${CYAN}Node and NPM already installed${NC}"
     else
-        echo -e "${RED}Your OS does not support node${NC}"
-        echo -e "${RED}Install cannot be completed${NC}"
-        exit 1
+        echo -e "${CYAN}Configuring and installing Node and NPM${NC}"
+        if [[ "$OS_CHK" = true ]] && [[ "$OS_NAME" == "Darwin" ]]; then
+            # handle Mac brew, node, and npm install
+            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            brew install node
+            reportStatus
+        elif [[ "$OS_CHK" = true ]] && [[ "$OS_NAME" == "Linux" ]]; then
+            # handle Linux  node and npm install
+            sudo apt-get -y install python-dev php5 cmake nodejs npm
+            reportStatus
+        else
+            echo -e "${RED}Your OS is not explicitly supported${NC}"
+            echo -e "${RED}Try install anyways? [y|n]:  ${NC}"
+                read pass
+                if [ "$pass" = 'y' -o "$pass" = 'Y' ]; then
+                    continue
+                else
+                    exit 1
+                fi
+        fi
     fi
 }
 
