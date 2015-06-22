@@ -30,7 +30,7 @@ installCtags ()
         cd ~/.vim/ctags_src
         tar xzf ctags-5.8.tar.gz
         cd ctags-5.8
-        if [ "$OS_CHK" = true ]; then
+        if [ "$OS_CHK" = false ]; then
             ./configure > /dev/null
         else
             sudo ./configure > /dev/null
@@ -38,7 +38,7 @@ installCtags ()
         if [ $? -eq 0 ]; then
             echo -e "${CYAN}Ctags configured successfully, attempting to install...${NC}"
             sleep 2
-            if [ OS_CHK ]; then
+            if [ "$OS_CHK" = false ]; then
                 make > /dev/null 2>&1 && make install > /dev/null
             else
                 sudo make > /dev/null 2>&1 && sudo make install > /dev/null
