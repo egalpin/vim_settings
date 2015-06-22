@@ -114,7 +114,7 @@ installVimProc ()
 
 installNode ()
 {
-    if [ ! -z "$(which node)" ] -a [ !-z "$(which npm)" ]; then
+    if [ ! -z "$(which node)" -a ! -z "$(which npm)" ]; then
         echo -e "${CYAN}Node and NPM already installed${NC}"
     else
         echo -e "${CYAN}Configuring and installing Node and NPM${NC}"
@@ -125,7 +125,7 @@ installNode ()
             reportStatus
         elif [[ "$OS_CHK" = true ]] && [[ "$OS_NAME" == "Linux" ]]; then
             # handle Linux  node and npm install
-            sudo apt-get -y install python-dev php5 cmake nodejs npm
+            sudo apt-get -y install python-dev php5 cmake node npm
             reportStatus
         else
             echo -e "${RED}Your OS is not explicitly supported${NC}"
