@@ -131,6 +131,9 @@ installNode ()
     fi
 }
 
+# First, ensure all submodules are correctly cloned
+git submodule update --init --recursive
+
 if [ "$(pwd)" != "$HOME" ]; then
     echo -e "${CYAN}Saving ~/.vim, ~/.vimrc, and ~/fonts to .bkp${NC}"
     # Save any existing vim configs
