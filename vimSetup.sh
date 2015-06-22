@@ -146,7 +146,7 @@ installNode ()
 
 # First things first, is vim actually installed?
 if [ -z "$(which vim)" ]; then
-    echo -e "${RED}You don't appear to have vim installed. Please the most recent VIM for your OS"
+    echo -e "${RED}You don't appear to have vim installed. Please the most recent VIM for your OS${NC}"
     exit 1
 fi
 
