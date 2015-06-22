@@ -22,44 +22,48 @@ reportStatus ()
 
 installCtags ()
 {
-    cwd=$( pwd )
-    echo -e "${CYAN}Configuring and installing ~/.vim/ctags-5.8 for Tagbar (requires root privileges)${NC}"
-    cd ~/.vim/ctags_src
-    tar xzf ctags-5.8.tar.gz
-    cd ctags-5.8
-    if [ "$OS_CHK" = true ]; then
-        ./configure > /dev/null
+    if [ ! -z "$(which ctags)" ]; then
+        echo -e "${CYAN}Ctags already installed${NC}"
     else
-        sudo ./configure > /dev/null
-    fi
-    if [ $? -eq 0 ]; then
-        echo -e "${CYAN}Ctags configured successfully, attempting to install...${NC}"
-        sleep 2
-        if [ -n "$win_chk" ]; then
-            make > /dev/null 2>&1 && make install > /dev/null
+        cwd=$( pwd )
+        echo -e "${CYAN}Configuring and installing ~/.vim/ctags-5.8 for Tagbar (requires root privileges)${NC}"
+        cd ~/.vim/ctags_src
+        tar xzf ctags-5.8.tar.gz
+        cd ctags-5.8
+        if [ "$OS_CHK" = true ]; then
+            ./configure > /dev/null
         else
-            sudo make > /dev/null 2>&1 && sudo make install > /dev/null
+            sudo ./configure > /dev/null
         fi
         if [ $? -eq 0 ]; then
-            echo -e "${GREEN}Ctags successfully installed to $( which ctags )${NC}"
+            echo -e "${CYAN}Ctags configured successfully, attempting to install...${NC}"
+            sleep 2
+            if [ OS_CHK ]; then
+                make > /dev/null 2>&1 && make install > /dev/null
+            else
+                sudo make > /dev/null 2>&1 && sudo make install > /dev/null
+            fi
+            if [ $? -eq 0 ]; then
+                echo -e "${GREEN}Ctags successfully installed to $( which ctags )${NC}"
+            else
+                echo -e "${RED}Ctags failed to install"
+                echo -e -n "Continue with setup? [y|n]:  ${NC}"
+                read pass
+                if [ "$pass" = 'y' -o "$pass" = 'Y' ]; then
+                    continue
+                else
+                    exit 1
+                fi
+            fi
         else
-            echo -e "${RED}Ctags failed to install"
-            echo -e -n "Continue with setup? [y|n]:  ${NC}"
+            echo -e "${RED}Ctags failed to configure. Tagbar will not work until ctags is configured correctly${NC}"
+            echo -e -n "Continue with setup? [y|n]:  "
             read pass
             if [ "$pass" = 'y' -o "$pass" = 'Y' ]; then
                 continue
             else
-                exit 1
+                exit 2
             fi
-        fi
-    else
-        echo -e "${RED}Ctags failed to configure. Tagbar will not work until ctags is configured correctly${NC}"
-        echo -e -n "Continue with setup? [y|n]:  "
-        read pass
-        if [ "$pass" = 'y' -o "$pass" = 'Y' ]; then
-            continue
-        else
-            exit 2
         fi
     fi
     eval cd $cwd
