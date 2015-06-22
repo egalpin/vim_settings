@@ -4,8 +4,8 @@ Portable Vim settings including various plugins.
 The plugins I claim no ownership over and have the utmost respect for their creators.  Plugins include Tim Pope's pathogen, Scrooloose's NERDTree, and more.
 
 Tested working on:
-  - Ubuntu 12.04
-  - Mac OSX 10.94
+  - Ubuntu 12.04, 14.04
+  - Mac OSX 10.9.4, 10.10.2
     - Requires manual installation of fonts
   - Cygwin 32-bit
 
@@ -28,18 +28,14 @@ Quick Summary of Vim commands:
 Normal Mode Mappings
 -----------------------------------------------------
   - ;t --> open tagbar
-  - ;e --> open NERDTree
-  - ;q --> stop highlighting search results (if any)
-  - ;" --> place quotations around the current word
+  - ;E --> open NERDTree
+  - ;n --> stop highlighting search results (if any)
   - spacebar --> enter visual mode and highlight current word
-  - \<ctrl\> w --> toggle line wrap
-  - ;r --> toggle relative numbers
-  - ;n --> toggle line numbers
-  - ;sv --> source ~/.vimrc, helpful for making changes on the fly
-  - ;git --> refreshes all buffers, helpful for suspend vim and pulling changes from git
+  - ;v --> source ~/.vimrc, helpful for making changes on the fly
+  - ;r --> refreshes all buffers, helpful for suspend vim and pulling changes from git
   - ;c --> remove colour column, helpful if using multiple languages with differing line length standards
   - \<ctrl\> p --> run the Vim plugin "CtrlP" (found here:  https://github.com/kien/ctrlp.vim)
-  - ;bd --> close current buffer using bbye (found here:  https://github.com/moll/vim-bbye)
+  - ;d --> close current buffer using bbye (found here:  https://github.com/moll/vim-bbye)
   - \<ctrl\> j/k/l/h --> navigate windows in current tab
   - QQ --> quit tab without saving more recent changes
   - WQ --> quit tab but save current changes first
@@ -57,4 +53,6 @@ Insert Mode Mappings
 <b>Visual Mode Mappings</b>
 -----------------------------------------------------
   - \<ctrl\> h --> starts a find/replace sequence for the highlighted selection
+
+TONS more mappings, check out .vimrc for more :-)
   
