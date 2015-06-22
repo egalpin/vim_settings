@@ -102,6 +102,16 @@ installTernForVim ()
     eval cd $cwd
 }
 
+installVimProc ()
+{
+    cwd=$( pwd )
+    echo -e "${CYAN}Configuring and installing vimproc${NC}"
+    cd ~/.vim/bundle/vimproc.vim
+    make
+    reportStatus
+    eval cd $cwd
+}
+
 installNode ()
 {
     echo -e "${CYAN}Configuring and installing Node and NPM${NC}"
@@ -143,6 +153,7 @@ installYCM
 installJsctags
 installPhpctags
 installTernForVim
+installVimProc
 
 echo -e "${CYAN}Next steps: set the terminal font to a powerline font; check YouCompleteMe, jsctags, phpctags on GitHub to verify installation${NC}"
 echo -e "${GREEN}Done!${NC}"
