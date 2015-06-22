@@ -8,6 +8,7 @@ colors pyte
 
 let mapleader=";"
 
+"set nobackup
 set backspace=2 "
 set number
 set numberwidth=6
@@ -64,10 +65,9 @@ endfunc
 nnoremap j gj
 nnoremap k gk
 nnoremap <silent> <leader>E :NERDTreeToggle<cr>
-nnoremap <leader>h :nohlsearch<cr>
-nnoremap <leader>c :botright cwindow<cr>
+nnoremap <leader>n :nohlsearch<cr>
+nnoremap <leader>5 :SyntasticCheck<CR>:lwindow<CR>:echom 'SyntasticCheck complete.'<CR>
 nnoremap <silent> <leader>t :TagbarToggle<cr>
-nnoremap <leader>j :TagbarOpen<space>j<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -79,38 +79,50 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
-nnoremap <leader>n :set number!<cr>
-nnoremap <silent> <leader>sv :source $MYVIMRC<cr>:nohlsearch<cr>
+nnoremap <silent> <leader>v :source $MYVIMRC<cr>:nohlsearch<cr>
 nnoremap <leader>r :bufdo e!<cr>
-nnoremap <leader>wc :w<cr>:tabclose<cr>
-nnoremap <leader>qc :tabclose!<cr>
 nnoremap QQ :QuitTab<cr>:bd DebuggerWatch<cr>:bd DebuggerStack<cr>:bd DebuggerStatus<cr>
 nnoremap WQ :WriteQuitTab<cr>
-nnoremap <leader>/ :TagbarClose<CR>:NERDTreeClose<CR>:VdebugStart<CR>
-nnoremap <leader>? :TagbarOpen<CR>:NERDTree<CR><C-l>
-"nnoremap <leader>c :set colorcolumn=<cr>
+nnoremap <leader>? :TagbarClose<CR>:NERDTreeClose<CR>:VdebugStart<CR>
 nnoremap <C-p> :CtrlP<cr>
 nnoremap gb :bn<cr>
 nnoremap GB :bp<cr>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>bd :Bdelete<cr>
-nnoremap <silent> <leader>cc :call ToggleQuickfixList()<CR>
-"nnoremap K :grep! -nR '\b<C-R><C-W>\b'<CR>:cw<CR>
+nnoremap <leader>d :Bdelete<cr>
+nnoremap K mJ:TernDef<CR>
+nnoremap <leader># :b#<CR>
+nnoremap <leader>f :set ft=
+nnoremap <C-s> :noautocmd write<CR>
+" Remove unwanted/trailing whitespace
+nnoremap <silent><F3> :%s/\s\+$//e<CR>
+
+" ToggleQuickfixList
+nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
+nnoremap <script> <silent> <leader>u :call ToggleLocationList()<CR>
+let g:toggle_list_copen_command="botright cwindow"
+
+" EasyMotion mappings
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+nmap <leader>s <Plug>(easymotion-s2)
+nmap <leader>w <Plug>(easymotion-w)
+nmap <leader>b <Plug>(easymotion-b)
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+hi link EasyMotionTarget2First Keyword
+hi link EasyMotionTarget2Second Keyword
 
 " Insert ------------------------------------------------
 inoremap jk <esc>
 " Capitalize word
-inoremap <c-u> <esc>viwUwa
+inoremap <c-u> <esc>viwUea
 " Fully un-capitalize word
-inoremap <c-l> <esc>viwuwa
+inoremap <c-l> <esc>viwuea
 inoremap <c-d> <esc>^Di
-" Create open / close tags with current word
-inoremap <c-t><c-i> <esc>bviwdi<</<esc>pa><esc>Bpa><esc>i
-" Create open / close tags with current word, inserting after tag
-inoremap <c-t><c-a> <esc>bviwdi<</<esc>pa><esc>Bpa>
 " Toggle line wrap. Useful for HTML/long strings
 inoremap <c-w> <esc>:set wrap!<cr>a
-" Delete previous/current word and continue in insert mode 
+" Delete previous/current word and continue in insert mode
 inoremap <c-b> <esc>vbda
 iabbrev adn and
 iabbrev ehco echo
@@ -119,7 +131,7 @@ iabbrev ehco echo
 " Find / replace within selected area
 vnoremap <c-h> :s/
  " Join lines with character
-vnoremap <c-j> <esc>:JoinLines 
+vnoremap <c-j> <esc>:JoinLines
 "vnoremap <leader>g :<c-u>!grep -rl '<,'> ./*<cr>
 "vnoremap <silent> <c-j> :-1s/$/,/<cr>:%j<cr>
 
@@ -135,7 +147,9 @@ let g:tagbar_type_javascript = {
 
 let g:PreserveNoEOL = 1
 
-let g:SuperTabDefaultCompletionType = "<C-n>"
+" SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<C-x><C-o>"
 
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = "top"
@@ -148,18 +162,18 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Enable powerline fonts for better look
-let g:airline_powerline_fonts = 1 
+let g:airline_powerline_fonts = 1
 
 " Disable JSHint highlighting
-let g:JSHintHighlightErrorLine = 0
+"let g:JSHintHighlightErrorLine = 0
 " Check for JS errors only on write
-let g:JSHintUpdateWriteOnly = 1
+"let g:JSHintUpdateWriteOnly = 1
 
 " Git Gutter
 " Enable git-gutter to always be present, even with no changes
 "let g:gitgutter_sign_column_always = 1
-let g:gitgutter_eager = 1
-let g:gitgutter_realtime= 1
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime= 0
 
 " Match lines of 80 characters in length
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -171,26 +185,35 @@ autocmd BufRead,VimEnter,WinEnter *.py nested match OverLength /\%80v.\+/
 "autocmd InsertLeave * set cul
 
 " Vdebug
- let g:vdebug_keymap = {
- \    "run" : "<F5>",
- \    "run_to_cursor" : "<Down>",
- \    "step_over" : "<Right>",
- \    "step_into" : "<Left>",
- \    "step_out" : "<Up>",
- \    "close" : "q",
- \    "set_breakpoint" : "<Leader>p",
- \    "eval_visual" : "<Leader>e"
- \}
- let g:vdebug_options = {
- \    'ide_key' : 'PHPSTORM',
- \    'break_on_open' : 1,
- \    'path_maps': {'/home/vagrant/nitrogensports.eu/httpdocs': '/Users/egalpin/gbl/ns/httpdocs'},
- \    'watch_window_style': 'expanded',
- \    'port' : 9000,
- \}
+let g:vdebug_keymap = {
+            \    "run" : "<F5>",
+            \    "run_to_cursor" : "<Down>",
+            \    "step_over" : "<Right>",
+            \    "step_into" : "<Left>",
+            \    "step_out" : "<Up>",
+            \    "close" : "<F6>",
+            \    "detach" : "<F7>",
+            \    "set_breakpoint" : "<Leader>p",
+            \    "get_context" : "<F10>",
+            \    "eval_under_cursor" : "<F12>",
+            \    "eval_visual" : "<Leader>e",
+            \}
+
+let g:vdebug_options = {
+            \    'ide_key' : 'PHPSTORM',
+            \    'break_on_open' : 1,
+            \    'path_maps': {'/home/vagrant/nitrogensports.eu/httpdocs': '/Users/egalpin/gbl/ns/httpdocs'},
+            \    'watch_window_style': 'expanded',
+            \    'port' : 9000,
+            \}
 
 " phpctags
 let g:tagbar_phpctags_bin="/usr/local/bin/phpctags/bin/phpctags"
+
+" CtrlP
+let g:ctrlp_working_path_mode=''
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=100
 
 " The Silver Searcher
 if executable('ag')
@@ -198,11 +221,30 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"    let g:ctrlp_user_command = 'ag %s -lr --nocolor -g ""'
+"    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+"          \ --ignore .git
+"          \ --ignore .svn
+"          \ --ignore .hg
+"          \ --ignore .DS_Store
+"          \ --ignore "**/*.pyc"
+"          \ -g ""'
 
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
+    " ag is fast enough that CtrlP doesn't need to cache (but why not)
+    let g:ctrlp_use_caching = 1
 endif
+
+" Syntastic
+let g:syntastic_mode_map = { 'mode': 'passive' }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_javascript_checkers = ['jshint']
+
+" NERDTree
+let NERDTreeShowHidden=1
+
+" PHP Completion
+"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+set completeopt=menuone "longest
 
 " Startup
 execute pathogen#infect()
@@ -216,5 +258,6 @@ autocmd BufRead,VimEnter,WinEnter *.py nested :set colorcolumn=80
 autocmd FileType tagbar setlocal nocursorline
 " Open quickfix when saving JS file
 "autocmd BufWritePre *.js :botright cwindow
+
 filetype plugin on
 syntax on
