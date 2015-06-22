@@ -71,7 +71,7 @@ installCtags ()
 
 installYCM ()
 {
-    echo -e "${CYAN}Configuring and installing YouCompleteMe${NC}"
+    echo -e "${CYAN}Configuring and installing YouCompleteMe. This could take a while...${NC}"
     cwd=$( pwd )
     cd ~/.vim/bundle/YouCompleteMe
     bash install.sh --clang-completer
