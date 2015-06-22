@@ -86,7 +86,7 @@ installPhpctags ()
 {
     echo -e "${CYAN}Configuring and installing tagbar-phpctags${NC}"
     cwd=$( pwd )
-    cd ~/.vim/bundle/tagbar-phpctags
+    cd ~/.vim/bundle/tagbar-phpctags.vim
     make
     reportStatus
     eval cd $cwd
@@ -122,7 +122,7 @@ installNode ()
         reportStatus
     elif [[ "$OS_CHK" = true ]] && [[ "$OS_NAME" == "Linux" ]]; then
         # handle Linux  node and npm install
-        sudo apt-get -y install nodejs npm
+        sudo apt-get -y install cmake nodejs npm
         reportStatus
     else
         echo -e "${RED}Your OS does not support node${NC}"
