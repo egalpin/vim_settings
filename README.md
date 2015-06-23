@@ -6,18 +6,19 @@ The plugins I claim no ownership over and have the utmost respect for their crea
 Tested working on:
   - Ubuntu 12.04, 14.04
   - Mac OSX 10.9.4, 10.10.2
-    - Requires manual installation of fonts
   - Cygwin 32-bit
 
------------------------------------------------------
-If simply cloning:
-  - Clone the repo using ```git clone https://github.com/egalpin/vim_settings.git```
-  - Navigate to the cloned location
-  - run ```./vimSetup.sh```
-    - Note that on most systems, the script may need to be run with sudo in order to allow for compilation of dependencies (ctags)
-  - Install fonts from your user's home directory i.e.```~/fonts``` folder
+Installation
+===================
+1. Clone this repo: ```git clone https://github.com/egalpin/vim_settings.git```
+2. Change to the cloned directory: ```cd vim_settings```
+3. Run ```./vimSetup.sh```
+    - Be aware that you will need sudo privileges to complete the full installation in order to ```make``` some of the depencies such as ctags
+4. Install fonts from your user's home directory i.e.```~/fonts``` folder
+5. Set the terminal font to one of the Powerline compatible fonts that you installed
+6. (Optional) If using Vdebug (included) and debugging on a virtual machine, you'll need to fill out the ```path_maps``` section of Vdebug in your .vimrc (/home/your_username/.vimrc)
+    - Maps should be in the form of (using vagrant VM as an example): '/home/vagrant/guest/path/to/your/dir': '/home/your_username/host/path/to/your/dir'
 
------------------------------------------------------
 
 Quick Summary of Vim commands:
 ===============================
