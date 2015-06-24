@@ -99,7 +99,7 @@ nnoremap <silent><F3> :%s/\s\+$//e<CR>
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nnoremap <script> <silent> <leader>u :call ToggleLocationList()<CR>
 
-" Cscope Mappings
+" Cscope
 " a: Interactive matching
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
 " s: Find this C symbol
@@ -118,6 +118,7 @@ nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
 nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+let g:cscope_silent = 1
 
 let g:toggle_list_copen_command="botright cwindow"
 
