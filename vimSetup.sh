@@ -20,6 +20,56 @@ reportStatus ()
     fi
 }
 
+installCscope ()
+{
+    if [ ! -z "$(which cscope)" ]; then
+        echo -e "${CYAN}cscope already installed${NC}"
+    else
+        cwd=$( pwd )
+        echo -e "${CYAN}Configuring and installing cscope (requires root privileges)${NC}"
+        cd ~/.vim/cscope_src
+        tar xf cscope-15.8b.tar
+        cd cscope-15.8b
+        if [ "$OS_CHK" = false ]; then
+            ./configure > /dev/null
+        else
+            sudo ./configure > /dev/null
+        fi
+        if [ $? -eq 0 ]; then
+            echo -e "${CYAN}cscope configured successfully, attempting to install...${NC}"
+            sleep 2
+            if [ "$OS_CHK" = false ]; then
+                make > /dev/null 2>&1 && make install > /dev/null
+            else
+                sudo make > /dev/null 2>&1 && sudo make install > /dev/null
+            fi
+            if [ $? -eq 0 ]; then
+                echo -e "${GREEN}cscope successfully installed to $( which cscope )${NC}"
+            else
+                echo -e "${RED}cscope failed to install"
+                echo -e -n "Continue with setup? [y|n]:  ${NC}"
+                read pass
+                if [ "$pass" = 'y' -o "$pass" = 'Y' ]; then
+                    continue
+                else
+                    exit 1
+                fi
+            fi
+        else
+            echo -e "${RED}cscope failed to configure. Tagbar will not work until cscope is configured correctly${NC}"
+            echo -e -n "Continue with setup? [y|n]:  "
+            read pass
+            if [ "$pass" = 'y' -o "$pass" = 'Y' ]; then
+                continue
+            else
+                exit 2
+            fi
+        fi
+    fi
+    eval cd $cwd
+
+}
+
 installCtags ()
 {
     if [ ! -z "$(which ctags)" ]; then
@@ -171,6 +221,7 @@ fi
 
 installNode
 installCtags
+installCscope
 installYCM
 installJsctags
 installPhpctags
