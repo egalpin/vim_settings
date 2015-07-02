@@ -2,7 +2,8 @@
 cp .vimrc ~/.vimrc
 if [ -z $(which apt-vim) ]; then
     git clone https://github.com/egalpin/apt-vim.git
-    apt-vim init
+    cd apt-vim
+    ./apt-vim init
 fi
 # Backup the old vim_config
 if [ -f ~/.vimpkg/vim_config.json ]; then
