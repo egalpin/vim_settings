@@ -15,49 +15,9 @@
                     "darwin": [
                         "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
                     ],
-                    "linux": []
-                }
-            },
-            {
-                "name": "node",
-                "recipe": {
-                    "darwin": [
-                        "brew install node"
-                    ],
-                    "linux": [
-                        "sudo apt-get install -y node npm"
-                    ]
-                }
-            },
-            {
-                "name": "jsctags",
-                "recipe": {
-                    "darwin": [
-                        "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
-                    ],
-                    "linux": [
-                        "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
-                    ]
-                }
-            },
-            {
-                "name": "ctags",
-                "recipe": {
-                    "darwin": [
-                        "curl -LSso /usr/local/Library/Formula/ctags-better-php.rb https://raw.githubusercontent.com/shawncplus/phpcomplete.vim/master/misc/ctags-better-php.rb",
-                        "brew install ctags-better-php",
-                        "brew link --overwrite ctags-better-php"
-                    ],
-                    "linux": [
-                        "curl -LSso ctags-5.8_better_php_parser.tar.gz https://github.com/shawncplus/phpcomplete.vim/raw/master/misc/ctags-5.8_better_php_parser.tar.gz",
-                        "tar xvf ctags-5.8_better_php_parser.tar.gz",
-                        "./configure",
-                        "make",
-                        "sudo make install"
-                    ]
+                    "all": []
                 }
             }
-
         ],
         "install-target": "~/.vimpkg/bundle"
     },
@@ -94,7 +54,25 @@
             }
         },
         {
-            "depends-on": [],
+            "depends-on": [
+                {
+                    "name": "ctags",
+                    "recipe": {
+                        "darwin": [
+                            "curl -LSso /usr/local/Library/Formula/ctags-better-php.rb https://raw.githubusercontent.com/shawncplus/phpcomplete.vim/master/misc/ctags-better-php.rb",
+                            "brew install ctags-better-php",
+                            "brew link --overwrite ctags-better-php"
+                        ],
+                        "linux": [
+                            "curl -LSso ctags-5.8_better_php_parser.tar.gz https://github.com/shawncplus/phpcomplete.vim/raw/master/misc/ctags-5.8_better_php_parser.tar.gz",
+                            "tar xvf ctags-5.8_better_php_parser.tar.gz",
+                            "sudo ./configure",
+                            "make",
+                            "sudo make install"
+                        ]
+                    }
+                }
+            ],
             "name": "tagbar",
             "pkg-url": "https://github.com/majutsushi/tagbar.git",
             "recipe": {}
@@ -133,7 +111,7 @@
                             "curl -LSso cscope-15.8b.tar.gz http://sourceforge.net/projects/cscope/files/latest/download?source=files",
                             "tar xzf cscope-15.8b.tar.gz",
                             "cd cscope-15.8b",
-                            "./configure",
+                            "sudo ./configure",
                             "make",
                             "sudo make install"
                         ],
@@ -141,7 +119,7 @@
                             "curl -LSso cscope-15.8b.tar.gz http://sourceforge.net/projects/cscope/files/latest/download?source=files",
                             "tar xzf cscope-15.8b.tar.gz",
                             "cd cscope-15.8b",
-                            "./configure",
+                            "sudo ./configure",
                             "make",
                             "sudo make install"
                         ]
@@ -232,6 +210,31 @@
             "recipe": {
                 "all": [
                     "npm install"
+                ]
+            }
+        },
+        {
+            "depends-on": [
+                {
+                    "name": "node",
+                    "recipe": {
+                        "darwin": [
+                            "brew install node"
+                        ],
+                        "linux": [
+                            "sudo apt-get install -y node npm"
+                        ]
+                    }
+                }
+            ],
+            "name": "jsctags",
+            "pkg-url": "",
+            "recipe": {
+                "darwin": [
+                    "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
+                ],
+                "linux": [
+                    "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
                 ]
             }
         },
