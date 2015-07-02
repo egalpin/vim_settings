@@ -90,7 +90,7 @@ nnoremap GB :bp<cr>
 nnoremap <leader>d :Bdelete<cr>
 nnoremap K mJ:TernDef<CR>
 nnoremap <leader># :b#<CR>
-nnoremap <leader>ft :set ft=
+nnoremap <leader>ff :set filetype=
 nnoremap <C-s> :noautocmd write<CR>
 " Remove unwanted/trailing whitespace
 nnoremap <silent><F3> :%s/\s\+$//e<CR>
@@ -99,7 +99,7 @@ nnoremap <silent><F3> :%s/\s\+$//e<CR>
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nnoremap <script> <silent> <leader>u :call ToggleLocationList()<CR>
 
-" Cscope
+" Cscope Mappings
 " a: Interactive matching
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
 " s: Find this C symbol
@@ -115,7 +115,7 @@ nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
 " e: Find this egrep pattern
 nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
 " f: Find this file
-nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+"nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 let g:cscope_silent = 1
@@ -224,7 +224,7 @@ let g:vdebug_keymap = {
 let g:vdebug_options = {
             \    'ide_key' : 'PHPSTORM',
             \    'break_on_open' : 1,
-            \    'path_maps': {},
+            \    'path_maps': {'': ''},
             \    'watch_window_style': 'expanded',
             \    'port' : 9000,
             \}
