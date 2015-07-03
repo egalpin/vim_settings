@@ -96,7 +96,6 @@ nnoremap <silent><F3> :%s/\s\+$//e<CR>
 " Gundo
 nnoremap <leader>g :GundoToggle<CR>
 let g:gundo_width=35
-autocmd BufWritePost * :GundoRenderGraph
 
 " ToggleQuickfixList
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
