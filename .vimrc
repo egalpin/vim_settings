@@ -4,8 +4,6 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 
-colors pyte
-
 let mapleader=";"
 
 "set nobackup
@@ -95,6 +93,10 @@ nnoremap <C-s> :noautocmd write<CR>
 " Remove unwanted/trailing whitespace
 nnoremap <silent><F3> :%s/\s\+$//e<CR>
 
+" Gundo
+nnoremap <leader>g :GundoToggle<CR>
+let g:gundo_width=35
+
 " ToggleQuickfixList
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nnoremap <script> <silent> <leader>u :call ToggleLocationList()<CR>
@@ -118,7 +120,7 @@ nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
 "nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
-let g:cscope_silent = 1
+let g:cscope_silent = 0
 
 let g:toggle_list_copen_command="botright cwindow"
 
@@ -283,3 +285,4 @@ autocmd FileType tagbar setlocal nocursorline
 
 filetype plugin on
 syntax on
+colorscheme pyte
