@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
+if [ -e ~/.vimrc ]; then
+    mv ~/.vimrc ~/.vimrc.bak
+fi
 cp .vimrc ~/.vimrc
+
 if [ -z $(which apt-vim) ]; then
     git clone https://github.com/egalpin/apt-vim.git
     cd apt-vim
