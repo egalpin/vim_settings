@@ -96,6 +96,7 @@ nnoremap <silent><F3> :%s/\s\+$//e<CR>
 " Gundo
 nnoremap <leader>g :GundoToggle<CR>
 let g:gundo_width=35
+autocmd BufWritePost * :GundoRenderGraph
 
 " ToggleQuickfixList
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
@@ -226,7 +227,7 @@ let g:vdebug_keymap = {
 let g:vdebug_options = {
             \    'ide_key' : 'PHPSTORM',
             \    'break_on_open' : 1,
-            \    'path_maps': {},
+            \    'path_maps': {'/home/vagrant/nitrogensports.eu/httpdocs': '/Users/egalpin/gbl/ns/httpdocs'},
             \    'watch_window_style': 'expanded',
             \    'port' : 9000,
             \}
