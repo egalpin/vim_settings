@@ -224,7 +224,7 @@ let g:vdebug_keymap = {
 let g:vdebug_options = {
             \    'ide_key' : 'PHPSTORM',
             \    'break_on_open' : 1,
-            \    'path_maps': {'': ''},
+            \    'path_maps': {},
             \    'watch_window_style': 'expanded',
             \    'port' : 9000,
             \}
