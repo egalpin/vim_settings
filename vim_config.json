@@ -82,8 +82,7 @@
             "name": "CSApprox",
             "pkg-url": "",
             "recipe": {
-                "all": [],
-                "linux": [
+                "all": [
                     "curl -LSso ~/csapprox.zip http://www.vim.org/scripts/download_script.php?src_id=18594",
                     "mkdir ~/.vim/bundle/CSApprox",
                     "mv ~/csapprox.zip ~/.vim/bundle/CSApprox",
