@@ -262,7 +262,6 @@ let g:ctrlp_working_path_mode=''
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=100
 let g:ctrlp_cmd = 'CtrlPMRU'
-nnoremap <C-j> :CtrlPBuffer<CR>
 if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
