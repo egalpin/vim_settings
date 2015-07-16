@@ -1,12 +1,10 @@
 let g:Powerline_symbols = 'fancy'
-set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
-set termencoding=utf-8
 
 let mapleader=";"
 
-"set nobackup
+set nobackup
+set undofile
 set backspace=2 "
 set number
 set numberwidth=6
@@ -29,6 +27,7 @@ set cursorline
 set nowrap
 set nocul
 set pastetoggle=<F2>
+set sessionoptions-=options  " Don't save options
 
 " Commands
 command! QuitTab call s:QuitTab()
@@ -58,6 +57,30 @@ func! JoinLines(joinStr)
     execute "normal! gv\:-1s/$/".a:joinStr." /\<cr>\:\%j\<cr>"
 endfunc
 
+fu! SaveSess()
+    execute 'mksession! ' . getcwd() . '/.session.vim'
+endfunction
+
+fu! _RestoreSess()
+    if filereadable(getcwd() . '/.session.vim')
+        execute 'so ' . getcwd() . '/.session.vim'
+        if bufexists(1)
+            for l in range(1, bufnr('$'))
+                if bufwinnr(l) == -1
+                    exec 'sbuffer ' . l
+                endif
+            endfor
+        endif
+    endif
+endfunction
+
+function! RestoreSess()
+    if argc() == 0
+        call _RestoreSess()
+    end
+endfunction
+
+
 " MAPPINGS
 " Normal ------------------------------------------------
 nnoremap j gj
@@ -79,10 +102,9 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <silent> <leader>v :source $MYVIMRC<cr>:nohlsearch<cr>
 nnoremap <leader>r :bufdo e!<cr>
-nnoremap QQ :QuitTab<cr>:bd DebuggerWatch<cr>:bd DebuggerStack<cr>:bd DebuggerStatus<cr>
+nnoremap QQ :QuitTab<cr>
 nnoremap WQ :WriteQuitTab<cr>
 nnoremap <leader>? :TagbarClose<CR>:NERDTreeClose<CR>:VdebugStart<CR>
-nnoremap <C-p> :CtrlP<cr>
 nnoremap gb :bn<cr>
 nnoremap GB :bp<cr>
 nnoremap <leader>d :Bdelete<cr>
@@ -120,7 +142,8 @@ nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
 "nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
-let g:cscope_silent = 0
+let g:cscope_silent = 1
+
 
 let g:toggle_list_copen_command="botright cwindow"
 
@@ -238,21 +261,22 @@ let g:tagbar_phpctags_bin="/usr/local/bin/phpctags/bin/phpctags"
 let g:ctrlp_working_path_mode=''
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=100
-
-" The Silver Searcher
+let g:ctrlp_cmd = 'CtrlPMRU'
+nnoremap <C-j> :CtrlPBuffer<CR>
 if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-"    let g:ctrlp_user_command = 'ag %s -lr --nocolor -g ""'
-"    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-"          \ --ignore .git
-"          \ --ignore .svn
-"          \ --ignore .hg
-"          \ --ignore .DS_Store
-"          \ --ignore "**/*.pyc"
-"          \ -g ""'
+    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+          \ --ignore .git
+          \ --ignore .svn
+          \ --ignore .hg
+          \ --ignore .DS_Store
+          \ --ignore "**/*.pyc"
+          \ --ignore composer
+          \ --ignore node_modules
+          \ -g ""'
 
     " ag is fast enough that CtrlP doesn't need to cache (but why not)
     let g:ctrlp_use_caching = 1
@@ -268,7 +292,7 @@ let NERDTreeShowHidden=1
 
 " PHP Completion
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-set completeopt=menuone "longest
+set completeopt=menuone
 
 " Startup
 execute pathogen#infect()
@@ -282,7 +306,19 @@ autocmd BufRead,VimEnter,WinEnter *.py nested :set colorcolumn=80
 autocmd FileType tagbar setlocal nocursorline
 " Open quickfix when saving JS file
 "autocmd BufWritePre *.js :botright cwindow
+" Save and restore sessions automatically
+autocmd VimLeave * call SaveSess()
+autocmd VimEnter * nested call RestoreSess()
 
 filetype plugin on
 syntax on
-colorscheme pyte
+set guifont=Inconsolata-g\ for\ Powerline:h12
+if has('gui_running')
+    set background=light
+    colorscheme solarized
+else
+    set t_Co=256
+    set term=xterm-256color
+    set termencoding=utf-8
+    colorscheme hybrid
+endif

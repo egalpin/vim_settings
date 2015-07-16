@@ -256,7 +256,19 @@
             "recipe": {}
         },
         {
-            "depends-on": [],
+            "depends-on": [
+                {
+                    "name": "ag",
+                    "recipe": {
+                        "darwin": [
+                            "brew install the_silver_searcher"
+                        ],
+                        "linux": [
+                            "sudo apt-get install silversearcher-ag"
+                        ]
+                    }
+                }
+            ],
             "name": "ctrlp.vim",
             "pkg-url": "https://github.com/kien/ctrlp.vim.git",
             "recipe": {}
