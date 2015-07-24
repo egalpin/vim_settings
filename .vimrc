@@ -201,8 +201,8 @@ let g:SuperTabContextDefaultCompletionType = "<C-x><C-o>"
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = "top"
 let g:jedi#popup_select_first = 1
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_function_definition = 0
+let g:jedi#popup_on_dot = 1
+let g:jedi#show_call_signatures = 1
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -262,6 +262,7 @@ let g:ctrlp_working_path_mode=''
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=100
 let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_reuse_window = 1
 if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor

@@ -12,10 +12,10 @@
             {
                 "name": "brew",
                 "recipe": {
+                    "all": [],
                     "darwin": [
                         "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
-                    ],
-                    "all": []
+                    ]
                 }
             }
         ],
@@ -78,29 +78,14 @@
             "recipe": {}
         },
         {
-            "depends-on": [],
-            "name": "CSApprox",
-            "pkg-url": "",
-            "recipe": {
-                "all": [
-                    "curl -LSso ~/csapprox.zip http://www.vim.org/scripts/download_script.php?src_id=18594",
-                    "mkdir ~/.vim/bundle/CSApprox",
-                    "mv ~/csapprox.zip ~/.vim/bundle/CSApprox",
-                    "cd ~/.vim/bundle/CSApprox",
-                    "unzip csapprox.zip",
-                    "rm csapprox.zip"
-                ]
-            }
-        },
-        {
             "depends-on": [
                 {
                     "name": "libncurses5-dev",
                     "recipe": {
+                        "all": [],
                         "linux": [
                             "sudo apt-get install -y libncurses5-dev"
-                        ],
-                        "all": []
+                        ]
                     }
                 },
                 {
@@ -204,28 +189,6 @@
                     }
                 }
             ],
-            "name": "tern_for_vim",
-            "pkg-url": "https://github.com/marijnh/tern_for_vim.git",
-            "recipe": {
-                "all": [
-                    "npm install"
-                ]
-            }
-        },
-        {
-            "depends-on": [
-                {
-                    "name": "node",
-                    "recipe": {
-                        "darwin": [
-                            "brew install node"
-                        ],
-                        "linux": [
-                            "sudo apt-get install -y node npm"
-                        ]
-                    }
-                }
-            ],
             "name": "jsctags",
             "pkg-url": "",
             "recipe": {
@@ -256,19 +219,7 @@
             "recipe": {}
         },
         {
-            "depends-on": [
-                {
-                    "name": "ag",
-                    "recipe": {
-                        "darwin": [
-                            "brew install the_silver_searcher"
-                        ],
-                        "linux": [
-                            "sudo apt-get install silversearcher-ag"
-                        ]
-                    }
-                }
-            ],
+            "depends-on": [],
             "name": "ctrlp.vim",
             "pkg-url": "https://github.com/kien/ctrlp.vim.git",
             "recipe": {}
@@ -392,6 +343,86 @@
             "name": "vim-togglelist",
             "pkg-url": "https://github.com/milkypostman/vim-togglelist.git",
             "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "CSApprox",
+            "pkg-url": "",
+            "recipe": {
+                "all": [
+                    "curl -LSso ~/csapprox.zip http://www.vim.org/scripts/download_script.php?src_id=18594",
+                    "mkdir ~/.vim/bundle/CSApprox",
+                    "mv ~/csapprox.zip ~/.vim/bundle/CSApprox",
+                    "cd ~/.vim/bundle/CSApprox",
+                    "unzip csapprox.zip",
+                    "rm csapprox.zip"
+                ]
+            }
+        },
+        {
+            "depends-on": [],
+            "name": "gundo.vim",
+            "pkg-url": "https://github.com/sjl/gundo.vim.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "MatchTagAlways",
+            "pkg-url": "https://github.com/Valloric/MatchTagAlways.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-matchit",
+            "pkg-url": "https://github.com/edsono/vim-matchit.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-repeat",
+            "pkg-url": "https://github.com/tpope/vim-repeat.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [
+                {
+                    "name": "brew",
+                    "recipe": {
+                        "all": [],
+                        "darwin": [
+                            "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+                        ]
+                    }
+                },
+                {
+                    "name": "node",
+                    "recipe": {
+                        "darwin": [
+                            "brew install node"
+                        ],
+                        "linux": [
+                            "sudo apt-get install -y node npm"
+                        ]
+                    }
+                }
+            ],
+            "name": "tern_for_vim",
+            "pkg-url": "https://github.com/marijnh/tern_for_vim.git",
+            "recipe": {
+                "all": [
+                    "npm install"
+                ]
+            }
+        },
+        {
+            "depends-on": [],
+            "name": "jedi-vim",
+            "pkg-url": "https://github.com/davidhalter/jedi-vim.git",
+            "recipe": {
+                "all": [
+                    "git submodule update --init --recursive"
+                ]
+            }
         }
     ]
 }
