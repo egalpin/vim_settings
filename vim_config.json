@@ -245,7 +245,7 @@
         {
             "depends-on": [],
             "name": "phpcomplete.vim",
-            "pkg-url": "https://github.com/shawncplus/phpcomplete.vim.git",
+            "pkg-url": "https://github.com/sebastiankessler/phpcomplete.vim.git",
             "recipe": {}
         },
         {
