@@ -117,6 +117,15 @@
         {
             "depends-on": [
                 {
+                    "name": "brew",
+                    "recipe": {
+                        "all": [],
+                        "darwin": [
+                            "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+                        ]
+                    }
+                },
+                {
                     "name": "cmake",
                     "recipe": {
                         "darwin": [
@@ -277,12 +286,6 @@
         },
         {
             "depends-on": [],
-            "name": "unite.vim",
-            "pkg-url": "https://github.com/Shougo/unite.vim.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "vdebug",
             "pkg-url": "https://github.com/joonty/vdebug.git",
             "recipe": {}
@@ -333,12 +336,6 @@
             "depends-on": [],
             "name": "vim-ragtag",
             "pkg-url": "https://github.com/tpope/vim-ragtag.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
-            "name": "vim-snipmate",
-            "pkg-url": "https://github.com/garbas/vim-snipmate.git",
             "recipe": {}
         },
         {
@@ -432,6 +429,18 @@
                     "git submodule update --init --recursive"
                 ]
             }
+        },
+        {
+            "depends-on": [],
+            "name": "ultisnips",
+            "pkg-url": "https://github.com/SirVer/ultisnips.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-snippets",
+            "pkg-url": "https://github.com/honza/vim-snippets.git",
+            "recipe": {}
         }
     ]
 }

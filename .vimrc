@@ -110,7 +110,7 @@ nnoremap GB :bp<cr>
 nnoremap <leader>d :Bdelete<cr>
 nnoremap K mJ:TernDef<CR>
 nnoremap <leader># :b#<CR>
-nnoremap <leader>ff :set filetype=
+nnoremap <leader>ff :setlocal filetype=
 nnoremap <C-s> :noautocmd write<CR>
 " Remove unwanted/trailing whitespace
 nnoremap <silent><F3> :%s/\s\+$//e<CR>
@@ -250,7 +250,7 @@ let g:vdebug_options = {
             \    'ide_key' : 'PHPSTORM',
             \    'break_on_open' : 1,
             \    'path_maps': {},
-            \    'watch_window_style': 'expanded',
+            \    'watch_window_style': 'compact',
             \    'port' : 9000,
             \}
 
@@ -261,7 +261,7 @@ let g:tagbar_phpctags_bin="/usr/local/bin/phpctags/bin/phpctags"
 let g:ctrlp_working_path_mode=''
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=100
-let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_reuse_window = 1
 if executable('ag')
     " Use ag over grep
@@ -293,6 +293,21 @@ let NERDTreeShowHidden=1
 " PHP Completion
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=menuone
+
+" UltiSnips
+" Make it so that <ENTER> will expand a snippet if in YouCompleteMe context.
+" See @kbenzie's comment -  https://github.com/Valloric/YouCompleteMe/issues/420
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 " Startup
 execute pathogen#infect()
