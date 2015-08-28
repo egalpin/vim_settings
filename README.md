@@ -8,7 +8,6 @@ __This repo makes use of [apt-vim](https://github.com/egalpin/apt-vim) to instal
 Tested working on:
   - Ubuntu 12.04, 14.04
   - Mac OSX 10.9.4, 10.10.2
-  - Cygwin 32-bit
 
 Installation
 ===================
