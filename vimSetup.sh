@@ -21,7 +21,7 @@ cd ${HOME}/apt-vim
 sudo python - <<EOF
 import imp, os
 av = imp.load_source("aptvim", "./apt-vim")
-APT_VIM_DIR = os.path.abspath(os.path.join(av, 'apt-vim'))
+APT_VIM_DIR = os.path.abspath(os.path.join(av.HOME, 'apt-vim'))
 os.environ['PATH'] += os.pathsep + av.BIN_DIR
 
 from av import aptvim
