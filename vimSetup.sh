@@ -25,6 +25,7 @@ HOME = os.path.expanduser("~")
 APT_VIM_DIR = os.path.abspath(os.path.join(HOME, 'apt-vim'))
 SCRIPT_ROOT_DIR = os.path.abspath(os.path.join(HOME, '.vimpkg'))
 BIN_DIR = os.path.abspath(os.path.join(SCRIPT_ROOT_DIR, 'bin'))
+VIM_CONFIG_PATH = os.path.abspath(os.path.join(SCRIPT_ROOT_DIR, 'vim_config.json'))
 os.environ['PATH'] += os.pathsep + BIN_DIR
 os.chdir(APT_VIM_DIR)
 
@@ -33,7 +34,7 @@ global ASSUME_YES
 ASSUME_YES = True
 
 global VIM_CONFIG
-json_file = open(file_path).read()
+json_file = open(VIM_CONFIG_PATH).read()
 VIM_CONFIG = json.loads(json_file)
 aptvim.handle_install(None, None, None)
 EOF
