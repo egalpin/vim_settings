@@ -35,6 +35,7 @@ ASSUME_YES = True
 global VIM_CONFIG
 json_file = open(VIM_CONFIG_PATH).read()
 VIM_CONFIG = json.loads(json_file)
+print(VIM_CONFIG)
 aptvim.handle_install(None, None, None)
 EOF
 cd $start_dir
