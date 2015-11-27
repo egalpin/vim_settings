@@ -16,9 +16,9 @@ curl -sLo vim_config.json https://raw.githubusercontent.com/egalpin/vim_settings
 cp ./vim_config.json ~/.vimpkg/vim_config.json
 
 if [ -f /etc/bash.bashrc ]; then
-    source /etc/bash.bashrc
+    . /etc/bash.bashrc
 elif [ -f /etc/profile ]; then
-    source /etc/profile
+    . /etc/profile
 fi
 
 apt-vim install -y
