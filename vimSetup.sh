@@ -31,6 +31,10 @@ os.chdir(APT_VIM_DIR)
 aptvim = imp.load_source("aptvim", "./apt-vim")
 global ASSUME_YES
 ASSUME_YES = True
+
+global VIM_CONFIG
+json_file = open(file_path).read()
+VIM_CONFIG = json.loads(json_file)
 aptvim.handle_install(None, None, None)
 EOF
 cd $start_dir
