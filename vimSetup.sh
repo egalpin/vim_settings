@@ -14,4 +14,5 @@ fi
 curl -sLo vim_config.json https://raw.githubusercontent.com/egalpin/vim_settings/master/vim_config.json
 # Overwrite the default vim_config
 cp ./vim_config.json ~/.vimpkg/vim_config.json
+export PATH=${PATH}:/usr/local/bin/apt-vim
 apt-vim install -y
