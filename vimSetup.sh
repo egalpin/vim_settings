@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+start_dir=`pwd`
 curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh|sh
 
 if [ -e ~/.vimrc ]; then
@@ -21,4 +22,21 @@ elif [ -f /etc/profile ]; then
     . /etc/profile
 fi
 
-apt-vim install -y
+# Execute apt-vim init
+cd ${HOME}/apt-vim
+sudo python - <<EOF
+import imp
+import os
+HOME = os.path.expanduser("~")
+APT_VIM_DIR = os.path.abspath(os.path.join(HOME, 'apt-vim'))
+SCRIPT_ROOT_DIR = os.path.abspath(os.path.join(HOME, '.vimpkg'))
+BIN_DIR = os.path.abspath(os.path.join(SCRIPT_ROOT_DIR, 'bin'))
+os.environ['PATH'] += os.pathsep + BIN_DIR
+os.chdir(APT_VIM_DIR)
+
+aptvim = imp.load_source("aptvim", "./apt-vim")
+global aptvim.ASSUME_YES
+ASSUME_YES = True
+aptvim.handle_install(None, None, None)
+EOF
+cd $start_dir
