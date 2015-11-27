@@ -2,37 +2,51 @@
     "global": {
         "depends-on": [
             {
-                "name": "git",
-                "recipe": {}
+                "name": "vim",
+                "recipe": {
+                    "darwin": [],
+                    "linux": [
+                        "sudo apt-get install -y vim"
+                    ]
+                }
             },
             {
-                "name": "python",
-                "recipe": {}
+                "name": "git",
+                "recipe": {
+                    "darwin": [],
+                    "linux": [
+                        "sudo apt-get install -y git"
+                    ]
+                }
+            },
+            {
+                "name": "pathogen",
+                "pkg-url": "https://github.com/tpope/vim-pathogen.git",
+                "recipe": {
+                    "all": [
+                        "mkdir -p ~/.vim/autoload ~/.vim/bundle",
+                        "curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim"
+                    ]
+                }
             },
             {
                 "name": "brew",
                 "recipe": {
-                    "all": [],
+                    "linux": [],
                     "darwin": [
                         "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
                     ]
                 }
+
+            },
+            {
+                "name": "python",
+                "recipe": {}
             }
         ],
         "install-target": "~/.vimpkg/bundle"
     },
     "packages": [
-        {
-            "depends-on": [],
-            "name": "pathogen",
-            "pkg-url": "https://github.com/tpope/vim-pathogen.git",
-            "recipe": {
-                "all": [
-                    "mkdir -p ~/.vim/autoload ~/.vim/bundle",
-                    "curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim"
-                ]
-            }
-        },
         {
             "depends-on": [],
             "name": "colors",
