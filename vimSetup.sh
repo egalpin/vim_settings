@@ -20,11 +20,11 @@ cp ./vim_config.json ~/.vimpkg/vim_config.json
 cd ${HOME}/apt-vim
 sudo python - <<EOF
 import imp, os
-aptvim = imp.load_source("aptvim", "./apt-vim")
-APT_VIM_DIR = os.path.abspath(os.path.join(aptvim.HOME, 'apt-vim'))
-os.environ['PATH'] += os.pathsep + aptvim.BIN_DIR
+av = imp.load_source("aptvim", "./apt-vim")
+APT_VIM_DIR = os.path.abspath(os.path.join(av, 'apt-vim'))
+os.environ['PATH'] += os.pathsep + av.BIN_DIR
 
-from aptvim import aptvim
+from av import aptvim
 
 os.chdir(APT_VIM_DIR)
 
