@@ -29,6 +29,7 @@ set nowrap
 set nocul
 set pastetoggle=<F2>
 set sessionoptions-=options  " Don't save options
+set viewoptions=cursor,folds,slash,unix
 
 " Commands
 command! QuitTab call s:QuitTab()
@@ -105,7 +106,6 @@ nnoremap <silent> <leader>v :source $MYVIMRC<cr>:nohlsearch<cr>
 nnoremap <leader>r :bufdo e!<cr>
 nnoremap QQ :QuitTab<cr>
 nnoremap WQ :WriteQuitTab<cr>
-nnoremap <leader>? :TagbarClose<CR>:NERDTreeClose<CR>:VdebugStart<CR>
 nnoremap gb :bn<cr>
 nnoremap GB :bp<cr>
 nnoremap <leader>d :Bdelete<cr>
@@ -172,8 +172,12 @@ inoremap <c-d> <esc>^Di
 inoremap <c-w> <esc>:set wrap!<cr>a
 " Delete previous/current word and continue in insert mode
 inoremap <c-b> <esc>vbda
-iabbrev adn and
-iabbrev ehco echo
+inoreabbrev adn and
+inoreabbrev ehco echo
+
+" Abbreviate SP doctrine calls
+inoreabbrev usp \Database::updateStoredProcedure('');
+inoreabbrev dsp $this->throwIrreversibleMigrationException('Cannot reverse Stored Procedure updates.');
 
 " Visual ------------------------------------------------
 " Find / replace within selected area
@@ -250,7 +254,7 @@ let g:vdebug_keymap = {
 let g:vdebug_options = {
             \    'ide_key' : 'PHPSTORM',
             \    'break_on_open' : 1,
-            \    'path_maps': {},
+            \    'path_maps': {'': ''},
             \    'watch_window_style': 'compact',
             \    'port' : 9000,
             \}
@@ -264,6 +268,8 @@ let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=100
 let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_reuse_window = 1
+" Open multiple files as new buffers
+let g:ctrlp_open_multiple_files = 'i'
 if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
@@ -277,6 +283,7 @@ if executable('ag')
           \ --ignore "**/*.pyc"
           \ --ignore composer
           \ --ignore node_modules
+          \ --ignore "*.un~"
           \ -g ""'
 
     " ag is fast enough that CtrlP doesn't need to cache (but why not)
@@ -333,8 +340,10 @@ if has('gui_running')
     set background=light
     colorscheme solarized
 else
-    set t_Co=256
-    set term=xterm-256color
-    set termencoding=utf-8
-    colorscheme hybrid
+   set background=light
+   colorscheme solarized
+   set t_Co=256
+   set term=xterm-256color
+   set termencoding=utf-8
+   colorscheme hybrid
 endif

@@ -263,7 +263,7 @@
         {
             "depends-on": [],
             "name": "phpcomplete.vim",
-            "pkg-url": "https://github.com/sebastiankessler/phpcomplete.vim.git",
+            "pkg-url": "https://github.com/shawncplus/phpcomplete.vim.git",
             "recipe": {}
         },
         {
@@ -440,6 +440,12 @@
             "depends-on": [],
             "name": "vim-snippets",
             "pkg-url": "https://github.com/honza/vim-snippets.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "BufOnly.vim",
+            "pkg-url": "https://github.com/vim-scripts/BufOnly.vim.git",
             "recipe": {}
         }
     ]
