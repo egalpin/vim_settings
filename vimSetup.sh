@@ -29,7 +29,7 @@ os.environ['PATH'] += os.pathsep + BIN_DIR
 os.chdir(APT_VIM_DIR)
 
 aptvim = imp.load_source("aptvim", "./apt-vim")
-global aptvim.ASSUME_YES
+global ASSUME_YES
 ASSUME_YES = True
 aptvim.handle_install(None, None, None)
 EOF
