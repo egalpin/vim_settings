@@ -24,11 +24,9 @@ av = imp.load_source("aptvim", "./apt-vim")
 APT_VIM_DIR = os.path.abspath(os.path.join(av.HOME, 'apt-vim'))
 os.environ['PATH'] += os.pathsep + av.BIN_DIR
 
-from av import aptvim
-
 os.chdir(APT_VIM_DIR)
 
-apt_vim = aptvim(ASSUME_YES=True)
+apt_vim = av.aptvim(ASSUME_YES=True)
 apt_vim.handle_install(None, None, None)
 EOF
 cd $start_dir
