@@ -16,12 +16,6 @@ curl -sLo vim_config.json https://raw.githubusercontent.com/egalpin/vim_settings
 # Overwrite the default vim_config
 cp ./vim_config.json ~/.vimpkg/vim_config.json
 
-if [ -f /etc/bash.bashrc ]; then
-    . /etc/bash.bashrc
-elif [ -f /etc/profile ]; then
-    . /etc/profile
-fi
-
 # Execute apt-vim init
 cd ${HOME}/apt-vim
 sudo python - <<EOF
