@@ -19,8 +19,7 @@ cp ./vim_config.json ~/.vimpkg/vim_config.json
 # Execute apt-vim init
 cd ${HOME}/apt-vim
 sudo python - <<EOF
-import imp
-import os
+import imp, os, json
 HOME = os.path.expanduser("~")
 APT_VIM_DIR = os.path.abspath(os.path.join(HOME, 'apt-vim'))
 SCRIPT_ROOT_DIR = os.path.abspath(os.path.join(HOME, '.vimpkg'))
