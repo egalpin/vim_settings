@@ -2,6 +2,8 @@
 start_dir=`pwd`
 curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/test_object/install.sh|sh
 
+chown -R ${SUDO_USER}:${SUDO_USER} ${HOME}/apt-vim
+
 if [ -e ~/.vimrc ]; then
     mv ~/.vimrc ~/.vimrc.bak
 fi
@@ -15,6 +17,7 @@ fi
 curl -sLo vim_config.json https://raw.githubusercontent.com/egalpin/vim_settings/master/vim_config.json
 # Overwrite the default vim_config
 cp ./vim_config.json ~/.vimpkg/vim_config.json
+
 
 # Execute apt-vim init
 cd ${HOME}/apt-vim
