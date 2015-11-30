@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 start_dir=`pwd`
-curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh|sh
+curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/test_object/install.sh|sh
 
 if [ -e ~/.vimrc ]; then
     mv ~/.vimrc ~/.vimrc.bak
