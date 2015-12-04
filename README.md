@@ -11,6 +11,18 @@ Tested working on:
 
 Installation
 ===================
+
+###Option 1 - Automatic
+Execute:
+
+    curl -fSsL https://raw.githubusercontent.com/egalpin/vim_settings/master/vimSetup.sh|sh
+
+* Set the terminal font to one of the `Powerline` compatible fonts
+  - If no `Powerline` fonts are available, try to manually install fonts from your user's `.fonts` directory i.e.```~/.fonts``` folder if 
+* (Optional) If using Vdebug (included) and debugging on a virtual machine, you'll need to fill out the ```path_maps``` section of Vdebug in your .vimrc (/home/your_username/.vimrc)
+    - Maps should be in the form of (using vagrant VM as an example): '/home/vagrant/guest/path/to/your/dir': '/home/your_username/host/path/to/your/dir'
+
+###Option 2 - Manual
 1. Clone this repo: ```git clone https://github.com/egalpin/vim_settings.git```
 2. Change to the cloned directory: ```cd vim_settings```
 3. Run ```./vimSetup.sh```
