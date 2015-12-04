@@ -1,20 +1,18 @@
 #!/usr/bin/env bash
 start_dir=`pwd`
-curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/test_object/install.sh|sh
-
-chown -R ${SUDO_USER}:${SUDO_USER} ${HOME}/apt-vim
+curl -fSsL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh|sh
 
 if [ -e ~/.vimrc ]; then
     mv ~/.vimrc ~/.vimrc.bak
 fi
-curl -sLo vimrc https://raw.githubusercontent.com/egalpin/vim_settings/master/vimrc
+curl -fSsLo vimrc https://raw.githubusercontent.com/egalpin/vim_settings/master/vimrc
 cp vimrc ~/.vimrc
 
 # Backup the old vim_config
 if [ -f ~/.vimpkg/vim_config.json ]; then
     mv ~/.vimpkg/vim_config.json ~/.vimpkg/vim_config.json.bak
 fi
-curl -sLo vim_config.json https://raw.githubusercontent.com/egalpin/vim_settings/master/vim_config.json
+curl -fSsLo vim_config.json https://raw.githubusercontent.com/egalpin/vim_settings/master/vim_config.json
 # Overwrite the default vim_config
 cp ./vim_config.json ~/.vimpkg/vim_config.json
 
@@ -34,3 +32,6 @@ apt_vim = av.aptvim(ASSUME_YES=True)
 apt_vim.handle_install(None, None, None)
 EOF
 cd $start_dir
+
+echo "All done! don't forget to set your terminal font to something"
+echo "compatible with Powerline :-)"
