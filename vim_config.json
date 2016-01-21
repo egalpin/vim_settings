@@ -22,7 +22,7 @@
             {
                 "name": "brew",
                 "recipe": {
-                    "linux": [],
+                    "all": [],
                     "darwin": [
                         "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
                     ]
@@ -461,6 +461,18 @@
             "depends-on": [],
             "name": "BufOnly.vim",
             "pkg-url": "https://github.com/vim-scripts/BufOnly.vim.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-multiple-cursors",
+            "pkg-url": "https://github.com/terryma/vim-multiple-cursors.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-signature",
+            "pkg-url": "https://github.com/kshenoy/vim-signature.git",
             "recipe": {}
         }
     ]

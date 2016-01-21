@@ -30,6 +30,8 @@ set nocul
 set pastetoggle=<F2>
 set sessionoptions-=options  " Don't save options
 set viewoptions=cursor,folds,slash,unix
+set ff=unix
+set ffs=unix
 
 " Commands
 command! QuitTab call s:QuitTab()
@@ -82,6 +84,12 @@ function! RestoreSess()
     end
 endfunction
 
+function! LazyP()
+  let g:ctrlp_default_input = expand('<cword>')
+  CtrlP
+  let g:ctrlp_default_input = ''
+endfunction
+command! LazyP call LazyP()
 
 " MAPPINGS
 " Normal ------------------------------------------------
@@ -112,7 +120,7 @@ nnoremap <leader>d :Bdelete<cr>
 nnoremap K mJ:TernDef<CR>
 nnoremap <leader># :b#<CR>
 nnoremap <leader>ff :setlocal filetype=
-nnoremap <C-s> :noautocmd write<CR>
+"nnoremap <C-s> :noautocmd write<CR>
 " Remove unwanted/trailing whitespace
 nnoremap <silent><F3> :%s/\s\+$//e<CR>
 
@@ -123,6 +131,9 @@ let g:gundo_width=35
 " ToggleQuickfixList
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nnoremap <script> <silent> <leader>u :call ToggleLocationList()<CR>
+
+" CtrlP search for filename under cursor
+nnoremap <C-w> :LazyP<CR>
 
 " Cscope Mappings
 " a: Interactive matching
@@ -254,10 +265,12 @@ let g:vdebug_keymap = {
 let g:vdebug_options = {
             \    'ide_key' : 'PHPSTORM',
             \    'break_on_open' : 1,
-            \    'path_maps': {'': ''},
             \    'watch_window_style': 'compact',
             \    'port' : 9000,
             \}
+            " Add the below path_maps variable (with paths) to vdebug options
+            " as needed
+            "\    'path_maps': {'': ''},
 
 " phpctags
 let g:tagbar_phpctags_bin="/usr/local/bin/phpctags/bin/phpctags"
@@ -332,6 +345,8 @@ autocmd FileType tagbar setlocal nocursorline
 " Save and restore sessions automatically
 autocmd VimLeave * call SaveSess()
 autocmd VimEnter * nested call RestoreSess()
+autocmd BufNewFile,BufRead *.hbs set filetype=javascript
+
 
 filetype plugin on
 syntax on
