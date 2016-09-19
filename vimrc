@@ -33,6 +33,14 @@ set viewoptions=cursor,folds,slash,unix
 set ff=unix
 set ffs=unix
 
+" Fix neovim ctrl+h <BS> mapping
+if has('nvim')
+    nnoremap <BS> <C-w>h
+endif
+
+let g:Powerline_symbols = 'fancy'
+let mapleader=";"
+
 " Commands
 command! QuitTab call s:QuitTab()
 command! WriteQuitTab call s:WriteQuitTab()
@@ -119,6 +127,7 @@ nnoremap GB :bp<cr>
 nnoremap <leader>d :Bdelete<cr>
 nnoremap K mJ:TernDef<CR>
 nnoremap <leader># :b#<CR>
+nnoremap <bs> :b#<CR>
 nnoremap <leader>ff :setlocal filetype=
 "nnoremap <C-s> :noautocmd write<CR>
 " Remove unwanted/trailing whitespace
@@ -133,7 +142,7 @@ nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nnoremap <script> <silent> <leader>u :call ToggleLocationList()<CR>
 
 " CtrlP search for filename under cursor
-nnoremap <C-w> :LazyP<CR>
+nnoremap <C-S-w> :LazyP<CR>
 
 " Cscope Mappings
 " a: Interactive matching
@@ -187,8 +196,8 @@ inoreabbrev adn and
 inoreabbrev ehco echo
 
 " Abbreviate SP doctrine calls
-inoreabbrev usp \Database::updateStoredProcedure('');
-inoreabbrev dsp $this->throwIrreversibleMigrationException('Cannot reverse Stored Procedure updates.');
+"inoreabbrev usp \Database::updateStoredProcedure('');
+"inoreabbrev dsp $this->throwIrreversibleMigrationException('Cannot reverse Stored Procedure updates.');
 
 " Visual ------------------------------------------------
 " Find / replace within selected area
@@ -197,6 +206,7 @@ vnoremap <c-h> :s/
 vnoremap <c-j> <esc>:JoinLines
 "vnoremap <leader>g :<c-u>!grep -rl '<,'> ./*<cr>
 "vnoremap <silent> <c-j> :-1s/$/,/<cr>:%j<cr>
+vnoremap <C-S-c> "+y
 
 filetype plugin indent on
 filetype on
@@ -263,7 +273,7 @@ let g:vdebug_keymap = {
             \}
 
 let g:vdebug_options = {
-            \    'ide_key' : 'PHPSTORM',
+            \    'ide_key' : '',
             \    'break_on_open' : 1,
             \    'watch_window_style': 'compact',
             \    'port' : 9000,
@@ -304,9 +314,9 @@ if executable('ag')
 endif
 
 " Syntastic
-let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_mode_map = { 'mode': 'passive' }
+"let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_javascript_checkers = ['eslint']
 
 " NERDTree
 let NERDTreeShowHidden=1
@@ -328,6 +338,7 @@ function! ExpandSnippetOrCarriageReturn()
         return "\<CR>"
     endif
 endfunction
+" Insert snippets via supertab
 inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 " Startup
@@ -346,19 +357,36 @@ autocmd FileType tagbar setlocal nocursorline
 autocmd VimLeave * call SaveSess()
 autocmd VimEnter * nested call RestoreSess()
 autocmd BufNewFile,BufRead *.hbs set filetype=javascript
-
+if has('nvim')
+    autocmd BufWritePre *.js Neomake
+    " Open quickfix when saving file
+    autocmd BufWritePost :lwindow
+endif
 
 filetype plugin on
 syntax on
 set guifont=Inconsolata-g\ for\ Powerline:h12
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+
 if has('gui_running')
     set background=light
     colorscheme solarized
 else
-   set background=light
-   colorscheme solarized
-   set t_Co=256
-   set term=xterm-256color
-   set termencoding=utf-8
-   colorscheme hybrid
+    set background=light
+    " solarized options
+    colorscheme solarized
+    "set background=dark
+    "colorscheme solarized
+    "set t_Co=256
+    "set term=xterm-256color
+    "set termencoding=utf-8
+    "colorscheme hybrid
 endif
+
+" Minimap
+let g:minimap_toggle='<leader>mm'
+
+
+" React/JSX
+let g:jsx_ext_required = 0
