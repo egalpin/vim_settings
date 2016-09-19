@@ -474,6 +474,60 @@
             "name": "vim-signature",
             "pkg-url": "https://github.com/kshenoy/vim-signature.git",
             "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-airline-themes",
+            "pkg-url": "https://github.com/vim-airline/vim-airline-themes.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-javascript",
+            "pkg-url": "git@github.com:pangloss/vim-javascript.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-node",
+            "pkg-url": "git@github.com:moll/vim-node.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "javascript-libraries-syntax.vim",
+            "pkg-url": "git@github.com:othree/javascript-libraries-syntax.vim.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "neomake",
+            "pkg-url": "git@github.com:benekastah/neomake.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-nodejs-complete",
+            "pkg-url": "git@github.com:myhere/vim-nodejs-complete.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-jsdoc",
+            "pkg-url": "git@github.com:heavenshell/vim-jsdoc.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-minimap",
+            "pkg-url": "git@github.com:severin-lemaignan/vim-minimap.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-jsx",
+            "pkg-url": "https://github.com/mxw/vim-jsx.git",
+            "recipe": {}
         }
     ]
 }
