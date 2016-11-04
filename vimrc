@@ -1,8 +1,5 @@
-let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
 set fillchars+=stl:\ ,stlnc:\
-
-let mapleader=";"
-
 set nobackup
 set undofile
 set backspace=2 "
@@ -32,6 +29,11 @@ set sessionoptions-=options  " Don't save options
 set viewoptions=cursor,folds,slash,unix
 set ff=unix
 set ffs=unix
+set autoread
+set splitright
+set splitbelow
+set mousehide
+set showcmd
 
 " Fix neovim ctrl+h <BS> mapping
 if has('nvim')
@@ -40,11 +42,13 @@ endif
 
 let g:Powerline_symbols = 'fancy'
 let mapleader=";"
+let $PATH = '/usr/local/bin:'.$PATH
 
 " Commands
 command! QuitTab call s:QuitTab()
 command! WriteQuitTab call s:WriteQuitTab()
 command! -nargs=* JoinLines call JoinLines( '<args>' )
+
 
 " Functions
 function! s:QuitTab()
@@ -103,9 +107,10 @@ command! LazyP call LazyP()
 " Normal ------------------------------------------------
 nnoremap j gj
 nnoremap k gk
+nnoremap i zzi
 nnoremap <silent> <leader>E :NERDTreeToggle<cr>
 nnoremap <leader>n :nohlsearch<cr>
-nnoremap <leader>5 :SyntasticCheck<CR>:lwindow<CR>:echom 'SyntasticCheck complete.'<CR>
+nnoremap <leader>5 :Neomake<CR>:lwindow<CR>:echom 'Neomake lint complete.'<CR>
 nnoremap <silent> <leader>t :TagbarToggle<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <C-h> <C-w>h
@@ -132,6 +137,8 @@ nnoremap <leader>ff :setlocal filetype=
 "nnoremap <C-s> :noautocmd write<CR>
 " Remove unwanted/trailing whitespace
 nnoremap <silent><F3> :%s/\s\+$//e<CR>
+nnoremap <Tab> >>
+nnoremap <S-Tab> <<
 
 " Gundo
 nnoremap <leader>g :GundoToggle<CR>
@@ -190,8 +197,7 @@ inoremap <c-l> <esc>viwuea
 inoremap <c-d> <esc>^Di
 " Toggle line wrap. Useful for HTML/long strings
 inoremap <c-w> <esc>:set wrap!<cr>a
-" Delete previous/current word and continue in insert mode
-inoremap <c-b> <esc>vbda
+
 inoreabbrev adn and
 inoreabbrev ehco echo
 
@@ -273,7 +279,7 @@ let g:vdebug_keymap = {
             \}
 
 let g:vdebug_options = {
-            \    'ide_key' : '',
+            \    'ide_key' : 'PHPSTORM',
             \    'break_on_open' : 1,
             \    'watch_window_style': 'compact',
             \    'port' : 9000,
@@ -325,6 +331,24 @@ let NERDTreeShowHidden=1
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 set completeopt=menuone
 
+" omnifuncs
+"augroup omnifuncs
+  "autocmd!
+  "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"augroup end
+
+" tern
+if exists('g:plugs["tern_for_vim"]')
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+endif
+
 " UltiSnips
 " Make it so that <ENTER> will expand a snippet if in YouCompleteMe context.
 " See @kbenzie's comment -  https://github.com/Valloric/YouCompleteMe/issues/420
@@ -351,8 +375,6 @@ autocmd BufRead,VimEnter,WinEnter * nested :set colorcolumn=
 autocmd BufRead,VimEnter,WinEnter *.py nested :set colorcolumn=80
 " Disable cursorline in tagbar tab (for improved scrolling)
 autocmd FileType tagbar setlocal nocursorline
-" Open quickfix when saving JS file
-"autocmd BufWritePre *.js :botright cwindow
 " Save and restore sessions automatically
 autocmd VimLeave * call SaveSess()
 autocmd VimEnter * nested call RestoreSess()
@@ -384,9 +406,19 @@ else
     "colorscheme hybrid
 endif
 
+" Deoplete
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:deoplete#enable_at_startup = 1
+
 " Minimap
 let g:minimap_toggle='<leader>mm'
 
+" Mucomplete
+let g:mucomplete#enable_auto_at_startup = 1
 
 " React/JSX
 let g:jsx_ext_required = 0
+
+" Neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1

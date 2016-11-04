@@ -27,7 +27,6 @@
                         "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
                     ]
                 }
-
             },
             {
                 "name": "python",
@@ -74,9 +73,8 @@
                     "name": "ctags",
                     "recipe": {
                         "darwin": [
-                            "curl -LSso /usr/local/Library/Formula/ctags-better-php.rb https://raw.githubusercontent.com/shawncplus/phpcomplete.vim/master/misc/ctags-better-php.rb",
-                            "brew install ctags-better-php",
-                            "brew link --overwrite ctags-better-php"
+                            "brew tap universal-ctags/universal-ctags",
+                            "brew install --HEAD universal-ctags"
                         ],
                         "linux": [
                             "curl -LSso ctags-5.8_better_php_parser.tar.gz https://github.com/shawncplus/phpcomplete.vim/raw/master/misc/ctags-5.8_better_php_parser.tar.gz",
@@ -84,6 +82,28 @@
                             "sudo ./configure",
                             "make",
                             "sudo make install"
+                        ]
+                    }
+                },
+                {
+                    "name": "node",
+                    "recipe": {
+                        "darwin": [
+                            "brew install node"
+                        ],
+                        "linux": [
+                            "sudo apt-get install -y node npm"
+                        ]
+                    }
+                },
+                {
+                    "name": "jsctags",
+                    "recipe": {
+                        "darwin": [
+                            "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
+                        ],
+                        "linux": [
+                            "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
                         ]
                     }
                 }
@@ -130,106 +150,12 @@
             "recipe": {}
         },
         {
-            "depends-on": [
-                {
-                    "name": "brew",
-                    "recipe": {
-                        "all": [],
-                        "darwin": [
-                            "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
-                        ]
-                    }
-                },
-                {
-                    "name": "cmake",
-                    "recipe": {
-                        "darwin": [
-                            "brew install cmake"
-                        ],
-                        "linux": [
-                            "sudo apt-get install -y cmake"
-                        ]
-                    }
-                },
-                {
-                    "name": "python-dev",
-                    "recipe": {
-                        "darwin": [],
-                        "linux": [
-                            "sudo apt-get install -y python-dev"
-                        ]
-                    }
-                },
-                {
-                    "name": "build-essential",
-                    "recipe": {
-                        "darwin": [],
-                        "linux": [
-                            "sudo apt-get install -y build-essential"
-                        ]
-                    }
-                }
-            ],
-            "name": "YouCompleteMe",
-            "pkg-url": "https://github.com/Valloric/YouCompleteMe.git",
-            "recipe": {
-                "all": [
-                    "git submodule update --init --recursive",
-                    "./install.sh --clang-completer"
-                ]
-            }
-        },
-        {
-            "depends-on": [
-                {
-                    "name": "php",
-                    "recipe": {
-                        "linux": [
-                            "sudo apt-get install -y php5"
-                        ]
-                    }
-                }
-            ],
-            "name": "tagbar-phpctags.vim",
-            "pkg-url": "https://github.com/vim-php/tagbar-phpctags.vim.git",
-            "recipe": {
-                "all": [
-                    "make"
-                ]
-            }
-        },
-        {
             "depends-on": [],
             "name": "vimproc.vim",
             "pkg-url": "https://github.com/Shougo/vimproc.vim.git",
             "recipe": {
                 "all": [
                     "make"
-                ]
-            }
-        },
-        {
-            "depends-on": [
-                {
-                    "name": "node",
-                    "recipe": {
-                        "darwin": [
-                            "brew install node"
-                        ],
-                        "linux": [
-                            "sudo apt-get install -y node npm"
-                        ]
-                    }
-                }
-            ],
-            "name": "jsctags",
-            "pkg-url": "",
-            "recipe": {
-                "darwin": [
-                    "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
-                ],
-                "linux": [
-                    "sudo npm install -g git+https://github.com/ramitos/jsctags.git"
                 ]
             }
         },
@@ -367,21 +293,6 @@
         },
         {
             "depends-on": [],
-            "name": "CSApprox",
-            "pkg-url": "",
-            "recipe": {
-                "all": [
-                    "curl -LSso ~/csapprox.zip http://www.vim.org/scripts/download_script.php?src_id=18594",
-                    "mkdir ~/.vim/bundle/CSApprox",
-                    "mv ~/csapprox.zip ~/.vim/bundle/CSApprox",
-                    "cd ~/.vim/bundle/CSApprox",
-                    "unzip csapprox.zip",
-                    "rm csapprox.zip"
-                ]
-            }
-        },
-        {
-            "depends-on": [],
             "name": "gundo.vim",
             "pkg-url": "https://github.com/sjl/gundo.vim.git",
             "recipe": {}
@@ -403,37 +314,6 @@
             "name": "vim-repeat",
             "pkg-url": "https://github.com/tpope/vim-repeat.git",
             "recipe": {}
-        },
-        {
-            "depends-on": [
-                {
-                    "name": "brew",
-                    "recipe": {
-                        "all": [],
-                        "darwin": [
-                            "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
-                        ]
-                    }
-                },
-                {
-                    "name": "node",
-                    "recipe": {
-                        "darwin": [
-                            "brew install node"
-                        ],
-                        "linux": [
-                            "sudo apt-get install -y node npm"
-                        ]
-                    }
-                }
-            ],
-            "name": "tern_for_vim",
-            "pkg-url": "https://github.com/marijnh/tern_for_vim.git",
-            "recipe": {
-                "all": [
-                    "npm install"
-                ]
-            }
         },
         {
             "depends-on": [],
@@ -524,9 +404,55 @@
             "recipe": {}
         },
         {
+            "depends-on": [
+                {
+                    "name": "brew",
+                    "recipe": {
+                        "all": [],
+                        "darwin": [
+                            "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+                        ]
+                    }
+                },
+                {
+                    "name": "node",
+                    "recipe": {
+                        "darwin": [
+                            "brew install node"
+                        ],
+                        "linux": [
+                            "sudo apt-get install -y node npm"
+                        ]
+                    }
+                }
+            ],
+            "name": "tern_for_vim",
+            "pkg-url": "https://github.com/ternjs/tern_for_vim.git",
+            "recipe": {
+                "all": [
+                    "npm install"
+                ]
+            }
+        },
+        {
+            "depends-on": [
+                {
+                    "name": "flake8",
+                    "recipe": {
+                        "darwin": [
+                            "python -m pip install flake8"
+                        ]
+                    }
+                }
+            ],
+            "name": "vim-flake8",
+            "pkg-url": "git@github.com:nvie/vim-flake8.git",
+            "recipe": {}
+        },
+        {
             "depends-on": [],
-            "name": "vim-jsx",
-            "pkg-url": "https://github.com/mxw/vim-jsx.git",
+            "name": "VimCompletesMe",
+            "pkg-url": "https://github.com/ajh17/VimCompletesMe.git",
             "recipe": {}
         }
     ]
