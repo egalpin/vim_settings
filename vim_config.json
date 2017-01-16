@@ -454,6 +454,22 @@
             "name": "VimCompletesMe",
             "pkg-url": "https://github.com/ajh17/VimCompletesMe.git",
             "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-js-indent",
+            "pkg-url": "https://github.com/gavocanov/vim-js-indent.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "clang_complete",
+            "pkg-url": "https://github.com/Rip-Rip/clang_complete.git",
+            "recipe": {
+                "darwin": [
+                    "make install"
+                ]
+            }
         }
     ]
 }
