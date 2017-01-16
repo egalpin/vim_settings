@@ -107,7 +107,6 @@ command! LazyP call LazyP()
 " Normal ------------------------------------------------
 nnoremap j gj
 nnoremap k gk
-nnoremap i zzi
 nnoremap <silent> <leader>E :NERDTreeToggle<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>5 :Neomake<CR>:lwindow<CR>:echom 'Neomake lint complete.'<CR>
@@ -146,7 +145,7 @@ let g:gundo_width=35
 
 " ToggleQuickfixList
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
-nnoremap <script> <silent> <leader>u :call ToggleLocationList()<CR>
+nnoremap <script> <silent> <leader>l :call ToggleLocationList()<CR>
 
 " CtrlP search for filename under cursor
 nnoremap <C-S-w> :LazyP<CR>
@@ -230,11 +229,13 @@ let g:PreserveNoEOL = 1
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<C-x><C-o>"
 
+" Jedi
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = "top"
 let g:jedi#popup_select_first = 1
 let g:jedi#popup_on_dot = 1
 let g:jedi#show_call_signatures = 1
+let g:jedi#usages_command = "<leader>u"
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -322,7 +323,16 @@ endif
 " Syntastic
 "let g:syntastic_mode_map = { 'mode': 'passive' }
 "let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_javascript_checkers = ['eslint']
+nnoremap <script> <silent> <leader>R :SyntasticReset<CR>
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " NERDTree
 let NERDTreeShowHidden=1
@@ -422,3 +432,9 @@ let g:jsx_ext_required = 0
 " Neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
+
+" JSHint.vim
+let JSHintUpdateWriteOnly=1
+
+" clang_complete
+let g:clang_library_path='/usr/local/Cellar/llvm/3.9.0/lib/'
