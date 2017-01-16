@@ -470,6 +470,12 @@
                     "make install"
                 ]
             }
+        },
+        {
+            "depends-on": [],
+            "name": "vim-autoformat",
+            "pkg-url": "https://github.com/Chiel92/vim-autoformat.git",
+            "recipe": {}
         }
     ]
 }
