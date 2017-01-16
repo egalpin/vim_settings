@@ -135,7 +135,7 @@ nnoremap <bs> :b#<CR>
 nnoremap <leader>ff :setlocal filetype=
 "nnoremap <C-s> :noautocmd write<CR>
 " Remove unwanted/trailing whitespace
-nnoremap <silent><F3> :%s/\s\+$//e<CR>
+"nnoremap <silent><F3> :%s/\s\+$//e<CR>
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 
@@ -438,3 +438,8 @@ let JSHintUpdateWriteOnly=1
 
 " clang_complete
 let g:clang_library_path='/usr/local/Cellar/llvm/3.9.0/lib/'
+
+" vim-autoformat
+noremap <F3> :Autoformat<CR>
+let g:formatdef_custom_js_formatter = '"js-beautify --good-stuff -j"'
+let g:formatters_js = ['custom_js_formatter']
