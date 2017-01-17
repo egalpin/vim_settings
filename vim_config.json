@@ -472,7 +472,31 @@
             }
         },
         {
-            "depends-on": [],
+            "depends-on": [
+                {
+                    "name": "node",
+                    "recipe": {
+                        "darwin": [
+                            "brew update",
+                            "brew install node"
+                        ],
+                        "linux": [
+                            "sudo apt-get install -y node npm"
+                        ]
+                    }
+                },
+                {
+                    "name": "js-beautify",
+                    "recipe": {
+                        "darwin": [
+                            "npm install -g js-beautify"
+                        ],
+                        "linux": [
+                            "npm install -g js-beautify"
+                        ]
+                    }
+                }
+            ],
             "name": "vim-autoformat",
             "pkg-url": "https://github.com/Chiel92/vim-autoformat.git",
             "recipe": {}
