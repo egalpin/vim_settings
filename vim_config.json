@@ -451,12 +451,6 @@
         },
         {
             "depends-on": [],
-            "name": "VimCompletesMe",
-            "pkg-url": "https://github.com/ajh17/VimCompletesMe.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "vim-js-indent",
             "pkg-url": "https://github.com/gavocanov/vim-js-indent.git",
             "recipe": {}
@@ -500,6 +494,35 @@
             "name": "vim-autoformat",
             "pkg-url": "https://github.com/Chiel92/vim-autoformat.git",
             "recipe": {}
+        },
+        {
+            "depends-on": [
+                {
+                    "name": "pip",
+                    "recipe": {
+                        "darwin": [
+                            "wget -O get-pip.py https://bootstrap.pypa.io/get-pip.py",
+                            "python get-pip.py"
+                        ]
+                    }
+                },
+                {
+                    "name": "node",
+                    "recipe": {
+                        "darwin": [
+                            "brew install node"
+                        ]
+                    }
+                }
+            ],
+            "name": "completor.vim",
+            "pkg-url": "https://github.com/maralla/completor.vim.git",
+            "recipe": {
+                "darwin": [
+                    "pip install --user jedi",
+                    "make js"
+                ]
+            }
         }
     ]
 }

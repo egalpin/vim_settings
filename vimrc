@@ -443,3 +443,7 @@ let g:clang_library_path='/usr/local/Cellar/llvm/3.9.0/lib/'
 noremap <F3> :Autoformat<CR>
 let g:formatdef_custom_js_formatter = '"js-beautify --good-stuff -j"'
 let g:formatters_js = ['custom_js_formatter']
+
+" Completor
+let g:completor_python_binary = '/Users/egalpin/Library/Python/2.7/lib/python/site-packages/'
+let g:completor_node_binary = '/usr/local/bin/node'
