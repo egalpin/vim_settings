@@ -445,7 +445,7 @@ let g:formatdef_custom_js_formatter = '"js-beautify --good-stuff -j"'
 let g:formatters_js = ['custom_js_formatter']
 
 " Completor
-let g:completor_python_binary = '/Users/egalpin/Library/Python/2.7/lib/python/site-packages/'
+let g:completor_python_binary = '/usr/bin/python'
 let g:completor_node_binary = '/usr/local/bin/node'
 
 " Ale lint engine
