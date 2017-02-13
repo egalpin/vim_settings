@@ -324,15 +324,15 @@ endif
 "let g:syntastic_mode_map = { 'mode': 'passive' }
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_javascript_checkers = ['eslint']
-nnoremap <script> <silent> <leader>R :SyntasticReset<CR>
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"nnoremap <script> <silent> <leader>R :SyntasticReset<CR>
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " NERDTree
 let NERDTreeShowHidden=1
@@ -447,3 +447,8 @@ let g:formatters_js = ['custom_js_formatter']
 " Completor
 let g:completor_python_binary = '/Users/egalpin/Library/Python/2.7/lib/python/site-packages/'
 let g:completor_node_binary = '/usr/local/bin/node'
+
+" Ale lint engine
+let g:ale_linters = {
+\   'javascript': ['jshint'],
+\}

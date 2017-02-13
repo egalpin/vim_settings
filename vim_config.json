@@ -215,12 +215,6 @@
         },
         {
             "depends-on": [],
-            "name": "syntastic",
-            "pkg-url": "https://github.com/scrooloose/syntastic.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "tlib_vim",
             "pkg-url": "https://github.com/tomtom/tlib_vim.git",
             "recipe": {}
@@ -523,6 +517,12 @@
                     "make js"
                 ]
             }
+        },
+        {
+            "depends-on": [],
+            "name": "ale",
+            "pkg-url": "https://github.com/w0rp/ale.git",
+            "recipe": {}
         }
     ]
 }
