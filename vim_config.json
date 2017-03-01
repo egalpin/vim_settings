@@ -311,16 +311,6 @@
         },
         {
             "depends-on": [],
-            "name": "jedi-vim",
-            "pkg-url": "https://github.com/davidhalter/jedi-vim.git",
-            "recipe": {
-                "all": [
-                    "git submodule update --init --recursive"
-                ]
-            }
-        },
-        {
-            "depends-on": [],
             "name": "ultisnips",
             "pkg-url": "https://github.com/SirVer/ultisnips.git",
             "recipe": {}
