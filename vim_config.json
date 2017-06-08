@@ -221,12 +221,6 @@
         },
         {
             "depends-on": [],
-            "name": "vdebug",
-            "pkg-url": "https://github.com/joonty/vdebug.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "vim-addon-mw-utils",
             "pkg-url": "https://github.com/MarcWeber/vim-addon-mw-utils.git",
             "recipe": {}
@@ -365,12 +359,6 @@
         },
         {
             "depends-on": [],
-            "name": "neomake",
-            "pkg-url": "https://github.com/benekastah/neomake.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "vim-nodejs-complete",
             "pkg-url": "https://github.com/myhere/vim-nodejs-complete.git",
             "recipe": {}
@@ -419,21 +407,6 @@
             }
         },
         {
-            "depends-on": [
-                {
-                    "name": "flake8",
-                    "recipe": {
-                        "darwin": [
-                            "python -m pip install flake8"
-                        ]
-                    }
-                }
-            ],
-            "name": "vim-flake8",
-            "pkg-url": "https://github.com/nvie/vim-flake8.git",
-            "recipe": {}
-        },
-        {
             "depends-on": [],
             "name": "vim-js-indent",
             "pkg-url": "https://github.com/gavocanov/vim-js-indent.git",
@@ -463,6 +436,23 @@
                             "npm install -g js-beautify"
                         ]
                     }
+                },
+                {
+                    "name": "pip",
+                    "recipe": {
+                        "darwin": [
+                            "curl --silent -o get-pip.py https://bootstrap.pypa.io/get-pip.py",
+                            "sudo -E python get-pip.py"
+                        ]
+                    }
+                },
+                {
+                    "name": "autopep8",
+                    "recipe": {
+                        "all": [
+                            "pip install --user --upgrade autopep8"
+                        ]
+                    }
                 }
             ],
             "name": "vim-autoformat",
@@ -475,8 +465,8 @@
                     "name": "pip",
                     "recipe": {
                         "darwin": [
-                            "wget -O get-pip.py https://bootstrap.pypa.io/get-pip.py",
-                            "python get-pip.py"
+                            "curl --silent -o get-pip.py https://bootstrap.pypa.io/get-pip.py",
+                            "sudo -E python get-pip.py"
                         ]
                     }
                 },
@@ -499,9 +489,56 @@
             }
         },
         {
-            "depends-on": [],
+            "depends-on": [
+                {
+                    "name": "flake8",
+                    "recipe": {
+                        "darwin": [
+                            "pip install --user flake8"
+                        ]
+                    }
+                },
+                {
+                    "name": "jshint",
+                    "recipe": {
+                        "darwin": [
+                            "sudo npm install -g jshint"
+                        ]
+                    }
+                }
+            ],
             "name": "ale",
             "pkg-url": "https://github.com/w0rp/ale.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "Join",
+            "pkg-url": "https://github.com/sk1418/Join.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "matchit",
+            "pkg-url": "https://github.com/tmhedberg/matchit.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "python-mode",
+            "pkg-url": "https://github.com/python-mode/python-mode.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-virtualenv",
+            "pkg-url": "https://github.com/jmcantrell/vim-virtualenv.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "vim-indexed-search",
+            "pkg-url": "https://github.com/henrik/vim-indexed-search.git",
             "recipe": {}
         }
     ]
