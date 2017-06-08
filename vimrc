@@ -14,7 +14,7 @@ set nosmartindent
 set softtabstop=4
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 set smartcase
 set ignorecase
 set incsearch
@@ -107,7 +107,8 @@ command! LazyP call LazyP()
 " Normal ------------------------------------------------
 nnoremap j gj
 nnoremap k gk
-nnoremap <silent> <leader>E :NERDTreeToggle<cr>
+nnoremap Y y$
+nnoremap <silent> <leader>e :NERDTree<cr>
 nnoremap <leader>n :nohlsearch<cr>
 nnoremap <leader>5 :Neomake<CR>:lwindow<CR>:echom 'Neomake lint complete.'<CR>
 nnoremap <silent> <leader>t :TagbarToggle<cr>
@@ -148,7 +149,7 @@ nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
 nnoremap <script> <silent> <leader>l :call ToggleLocationList()<CR>
 
 " CtrlP search for filename under cursor
-nnoremap <C-S-w> :LazyP<CR>
+"nnoremap <C-S-w> :LazyP<CR>
 
 " Cscope Mappings
 " a: Interactive matching
@@ -189,6 +190,7 @@ hi link EasyMotionTarget2Second Keyword
 
 " Insert ------------------------------------------------
 inoremap jk <esc>
+inoremap jj <esc>
 " Capitalize word
 inoremap <c-u> <esc>viwUea
 " Fully un-capitalize word
@@ -445,10 +447,18 @@ let g:formatdef_custom_js_formatter = '"js-beautify --good-stuff -j"'
 let g:formatters_js = ['custom_js_formatter']
 
 " Completor
-let g:completor_python_binary = '/usr/bin/python'
+let g:completor_python_binary = '/usr/local/bin/python3'
 let g:completor_node_binary = '/usr/local/bin/node'
 
 " Ale lint engine
 let g:ale_linters = {
 \   'javascript': ['jshint'],
 \}
+let g:ale_python_flake8_executable = 'python'
+let g:ale_python_flake8_args = '-m flake8'
+
+" PyMode
+let g:pymode_lint = 0
+let g:pymode_lint_write = 0
+let g:pymode_lint_message = 0
+let g:pymode_rope = 0
