@@ -203,12 +203,6 @@
         },
         {
             "depends-on": [],
-            "name": "phpcomplete.vim",
-            "pkg-url": "https://github.com/shawncplus/phpcomplete.vim.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "supertab",
             "pkg-url": "https://github.com/ervandew/supertab.git",
             "recipe": {}
@@ -323,12 +317,6 @@
         },
         {
             "depends-on": [],
-            "name": "vim-multiple-cursors",
-            "pkg-url": "https://github.com/terryma/vim-multiple-cursors.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "vim-signature",
             "pkg-url": "https://github.com/kshenoy/vim-signature.git",
             "recipe": {}
@@ -337,79 +325,6 @@
             "depends-on": [],
             "name": "vim-airline-themes",
             "pkg-url": "https://github.com/vim-airline/vim-airline-themes.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
-            "name": "vim-javascript",
-            "pkg-url": "https://github.com/pangloss/vim-javascript.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
-            "name": "vim-node",
-            "pkg-url": "https://github.com/moll/vim-node.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
-            "name": "javascript-libraries-syntax.vim",
-            "pkg-url": "https://github.com/othree/javascript-libraries-syntax.vim.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
-            "name": "vim-nodejs-complete",
-            "pkg-url": "https://github.com/myhere/vim-nodejs-complete.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
-            "name": "vim-jsdoc",
-            "pkg-url": "https://github.com/heavenshell/vim-jsdoc.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
-            "name": "vim-minimap",
-            "pkg-url": "https://github.com/severin-lemaignan/vim-minimap.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [
-                {
-                    "name": "brew",
-                    "recipe": {
-                        "all": [],
-                        "darwin": [
-                            "ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
-                        ]
-                    }
-                },
-                {
-                    "name": "node",
-                    "recipe": {
-                        "darwin": [
-                            "brew install node"
-                        ],
-                        "linux": [
-                            "sudo apt-get install -y node npm"
-                        ]
-                    }
-                }
-            ],
-            "name": "tern_for_vim",
-            "pkg-url": "https://github.com/ternjs/tern_for_vim.git",
-            "recipe": {
-                "all": [
-                    "npm install"
-                ]
-            }
-        },
-        {
-            "depends-on": [],
-            "name": "vim-js-indent",
-            "pkg-url": "https://github.com/gavocanov/vim-js-indent.git",
             "recipe": {}
         },
         {
@@ -505,6 +420,14 @@
                             "sudo npm install -g jshint"
                         ]
                     }
+                },
+                {
+                    "name": "drafter",
+                    "recipe": {
+                        "darwin": [
+                            "brew install --HEAD https://raw.github.com/apiaryio/drafter/master/tools/homebrew/drafter.rb"
+                        ]
+                    }
                 }
             ],
             "name": "ale",
@@ -525,12 +448,6 @@
         },
         {
             "depends-on": [],
-            "name": "python-mode",
-            "pkg-url": "https://github.com/python-mode/python-mode.git",
-            "recipe": {}
-        },
-        {
-            "depends-on": [],
             "name": "vim-virtualenv",
             "pkg-url": "https://github.com/jmcantrell/vim-virtualenv.git",
             "recipe": {}
@@ -539,6 +456,24 @@
             "depends-on": [],
             "name": "vim-indexed-search",
             "pkg-url": "https://github.com/henrik/vim-indexed-search.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "apiblueprint.vim",
+            "pkg-url": "https://github.com/kylef/apiblueprint.vim.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "SimpylFold",
+            "pkg-url": "https://github.com/tmhedberg/SimpylFold.git",
+            "recipe": {}
+        },
+        {
+            "depends-on": [],
+            "name": "FastFold",
+            "pkg-url": "https://github.com/Konfekt/FastFold.git",
             "recipe": {}
         }
     ]
