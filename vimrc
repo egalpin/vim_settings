@@ -11,10 +11,10 @@ set ruler
 set visualbell
 set noswapfile
 set nosmartindent
+set nosmarttab
 set softtabstop=4
 set tabstop=4
 set shiftwidth=4
-set nosmarttab
 set expandtab
 set smartcase
 set ignorecase
@@ -35,6 +35,8 @@ set splitright
 set splitbelow
 set mousehide
 set showcmd
+set wildignore+=*/.git/*,*/.svn/*,*/.hg/*,*/.DS_Store,*/*.pyc,*/composer/*,*/node_modules/*,*/*.un~
+set synmaxcol=200
 
 " Fix neovim ctrl+h <BS> mapping
 if has('nvim')
@@ -140,10 +142,14 @@ nnoremap <leader>ff :setlocal filetype=
 "nnoremap <silent><F3> :%s/\s\+$//e<CR>
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
+nnoremap <silent> <C-_> :CtrlPLine<CR>
 
 " Gundo
 nnoremap <leader>g :GundoToggle<CR>
 let g:gundo_width=35
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 
 " ToggleQuickfixList
 nnoremap <script> <silent> <leader>q :call ToggleQuickfixList()<CR>
@@ -218,6 +224,14 @@ vnoremap <C-S-c> "+y
 
 filetype plugin indent on
 filetype on
+
+
+
+" Startup
+execute pathogen#infect()
+call pathogen#helptags()
+
+
 
 "let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 "let g:tagbar_width=55
@@ -303,6 +317,7 @@ let g:ctrlp_cmd = 'CtrlPBuffer'
 let g:ctrlp_reuse_window = 1
 " Open multiple files as new buffers
 let g:ctrlp_open_multiple_files = 'i'
+let g:ctrlp_extensions = ['line', 'buffertag']
 if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor
@@ -321,6 +336,12 @@ if executable('ag')
 
     " ag is fast enough that CtrlP doesn't need to cache (but why not)
     let g:ctrlp_use_caching = 1
+endif
+
+if executable('rg')
+    set grepprg=rg\ --color=never
+    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    let g:ctrlp_use_caching = 0
 endif
 
 " Syntastic
@@ -353,6 +374,7 @@ set completeopt=menuone
   "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
   "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "augroup end
+"autocmd FileType apiblueprint nnoremap <C-j> :call GenerateRefract()<cr>
 
 " tern
 if exists('g:plugs["tern_for_vim"]')
@@ -378,14 +400,12 @@ endfunction
 " Insert snippets via supertab
 inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
-" Startup
-execute pathogen#infect()
-call pathogen#helptags()
 highlight ColorColumn ctermbg=8
 highlight SignColumn ctermbg=DarkGrey
 autocmd BufRead,VimEnter,WinEnter * nested :set colorcolumn=
 " Create visual reminder for PEP8 standards in .py files
 autocmd BufRead,VimEnter,WinEnter *.py nested :set colorcolumn=80
+autocmd BufRead,VimEnter,WinEnter *.py nested :set textwidth=79
 " Disable cursorline in tagbar tab (for improved scrolling)
 autocmd FileType tagbar setlocal nocursorline
 " Save and restore sessions automatically
@@ -400,15 +420,16 @@ endif
 
 filetype plugin on
 syntax on
-set guifont=Inconsolata-g\ for\ Powerline:h12
+"set guifont=Inconsolata-g\ for\ Powerline:h12
+set guifont=Roboto\ Mono\ for\ Powerline:h13
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 
 if has('gui_running')
-    set background=light
+    set background=dark
     colorscheme solarized
 else
-    set background=light
+    set background=dark
     " solarized options
     colorscheme solarized
     "set background=dark
@@ -452,14 +473,10 @@ let g:completor_python_binary = '/usr/local/bin/python3'
 let g:completor_node_binary = '/usr/local/bin/node'
 
 " Ale lint engine
+let g:ale_python_pylint_change_directory = 0
 let g:ale_linters = {
 \   'javascript': ['jshint'],
+\   'python': ['flake8', 'pylint', 'mypy'],
 \}
-let g:ale_python_flake8_executable = 'python'
-let g:ale_python_flake8_args = '-m flake8'
-
-" PyMode
-let g:pymode_lint = 0
-let g:pymode_lint_write = 0
-let g:pymode_lint_message = 0
-let g:pymode_rope = 0
+"let g:ale_python_flake8_executable = 'python'
+"let g:ale_python_flake8_args = '-m flake8'
